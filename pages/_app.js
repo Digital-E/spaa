@@ -21,8 +21,8 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <>
-      <Header data={pageProps.data?.menuData} />
-      <CookieConsent
+      {/* <Header data={pageProps.data?.menuData} /> */}
+      {/* <CookieConsent
         buttonText={pageProps.data?.menuData.cookieaccept}
         declineButtonText={pageProps.data?.menuData.cookierefuse}
         enableDeclineButton
@@ -35,11 +35,11 @@ function MyApp({ Component, pageProps, router }) {
         onDecline={() => {}}
         >
         <Body content={pageProps.data?.menuData.cookietext} />
-      </CookieConsent>
+      </CookieConsent> */}
       <RouterScrollProvider>     
         <Component {...pageProps} />
       </RouterScrollProvider> 
-      <Footer data={pageProps.data?.footerData}/>
+      {/* <Footer data={pageProps.data?.footerData}/> */}
     </>
   )
 }

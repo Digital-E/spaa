@@ -18,63 +18,52 @@ import Overlay from "../../components/home/overlay"
 export default function Index({ data = {}, preview }) {
   // const heroPost = allPosts[0]
   // const morePosts = allPosts.slice(1)
-  let [allEvents, setAllEvents] = useState([]);
-  const router = useRouter()
 
-  const slug = data?.homeData?.slug
+  // let [allEvents, setAllEvents] = useState([]);
+  // const router = useRouter()
 
-  // const {
-  //   data: { homeData },
-  // } = usePreviewSubscription(homeQuery, {
-  //   params: { slug },
-  //   initialData: data,
-  //   enabled: preview && slug,
-  // })
+  // const slug = data?.homeData?.slug
 
-  if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  // if (!router.isFallback && !slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
 
-  useEffect(() => {
-    // document.querySelector("body").classList.add("dark-background");
+  // useEffect(() => {
 
-    let now  = new Date();
-    now = now;
+  //   let now  = new Date();
+  //   now = now;
 
-    let events = data.events.slice();
+  //   let events = data.events.slice();
 
-    let orderedEvents = events.sort(function(a,b) {
-      var aToDate = (new Date(a.startdate));
-      var bToDate = (new Date(b.startdate));
-      return Math.abs(aToDate - now) - Math.abs(bToDate - now);
-    })
+  //   let orderedEvents = events.sort(function(a,b) {
+  //     var aToDate = (new Date(a.startdate));
+  //     var bToDate = (new Date(b.startdate));
+  //     return Math.abs(aToDate - now) - Math.abs(bToDate - now);
+  //   })
 
-    let allEventsArray = orderedEvents.filter(item => {
-      if(new Date(item.startdate) > new Date()) {
-        return item
-      }
-    })
+  //   let allEventsArray = orderedEvents.filter(item => {
+  //     if(new Date(item.startdate) > new Date()) {
+  //       return item
+  //     }
+  //   })
 
-    let splicedAllEventsArray = [];
+  //   let splicedAllEventsArray = [];
 
-    if(data.homeData.video !== null) {
-      splicedAllEventsArray = allEventsArray.splice(0, 5)
-    } else {
-      splicedAllEventsArray = allEventsArray.splice(0, 6)
-    }
+  //   if(data.homeData.video !== null) {
+  //     splicedAllEventsArray = allEventsArray.splice(0, 5)
+  //   } else {
+  //     splicedAllEventsArray = allEventsArray.splice(0, 6)
+  //   }
 
-    setAllEvents([...splicedAllEventsArray])
+  //   setAllEvents([...splicedAllEventsArray])
 
-    return () => {
-      document.querySelector("body").classList.remove("dark-background");
-    }
-  }, []);
+  // }, []);
 
 
   return (
     <>
       <Layout preview={preview}>
-        <Head>
+        {/* <Head>
           <title>{data?.homeData?.title} | { SITE_NAME }</title>
           <meta
           name="description"
@@ -84,8 +73,7 @@ export default function Index({ data = {}, preview }) {
         <Overlay />
         <Circles data={data?.homeData?.circles} />
         <Calendar data={data.news} />
-        {/* <Video data={homeData} title={homeData?.videoTitle}/> */}
-        <EventList data={allEvents} title={data?.homeData?.newsTitle} videoData={data?.homeData}/>
+        <EventList data={allEvents} title={data?.homeData?.newsTitle} videoData={data?.homeData}/> */}
       </Layout>
     </>
   )
@@ -97,40 +85,40 @@ export async function getStaticProps({ preview = false, params }) {
   //   props: { allPosts, preview },
   // }
 
-  let slug = params.lang
+  // let slug = params.lang
 
-  const homeData = await getClient(preview).fetch(homeQuery, {
-    slug: slug,
-  })
+  // const homeData = await getClient(preview).fetch(homeQuery, {
+  //   slug: slug,
+  // })
 
-  const news = await getClient(preview).fetch(indexQuery, {
-    slug: slug
-  });
+  // const news = await getClient(preview).fetch(indexQuery, {
+  //   slug: slug
+  // });
 
-  const events = await getClient(preview).fetch(indexEventsQuery, {
-    slug: slug
-  });
+  // const events = await getClient(preview).fetch(indexEventsQuery, {
+  //   slug: slug
+  // });
 
-  // Get Menu And Footer
+  // // Get Menu And Footer
 
-  const menuData = await getClient(preview).fetch(menuQuery, {
-    lang: params.lang
-  });
+  // const menuData = await getClient(preview).fetch(menuQuery, {
+  //   lang: params.lang
+  // });
 
-  const footerData = await getClient(preview).fetch(footerQuery, {
-    lang: params.lang
-  });
+  // const footerData = await getClient(preview).fetch(footerQuery, {
+  //   lang: params.lang
+  // });
 
   return {
     props: {
       preview,
-      data: {
-        homeData,
-        news,
-        events,
-        menuData,
-        footerData
-      }
+      // data: {
+      //   homeData,
+      //   news,
+      //   events,
+      //   menuData,
+      //   footerData
+      // }
     }
   }
 }
