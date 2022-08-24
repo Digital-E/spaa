@@ -1,0 +1,451 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+@font-face {
+    font-family: "Es Klarheit Grotesk Medium";
+    src: url("/fonts/ESKlarheitGrotesk-Medium.woff2") format("woff2"),
+    url("/fonts/ESKlarheitGrotesk-Medium.woff") format("woff")
+    ;
+}
+
+@font-face {
+    font-family: "Es Klarheit Grotesk Semibold";
+    src: url("/fonts/ESKlarheitGrotesk-Semibold.woff2") format("woff2"),
+    url("/fonts/ESKlarheitGrotesk-Semibold.woff") format("woff")
+    ;
+}
+
+@font-face {
+    font-family: "Social Media Circled";
+    src: url("/fonts/Social Media Circled.otf");
+}
+
+/* * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+/* -------------------------------------------------------------------------- */
+/*                                   Global                                   */
+/* -------------------------------------------------------------------------- */
+
+#__next {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+html {
+    line-height: 1;
+    overflow-x: hidden;
+}
+
+:root {
+    --transition-in: 0.2s;
+    --transition-out: 0.3s;
+    --lateral-padding: 0 20px;
+}
+
+.border-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: calc(100% - 40px);
+    height: 1px;
+    background: black;
+    left: 20px;
+}
+
+.border-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 40px);
+    height: 1px;
+    background: black;
+    left: 20px;
+}
+
+.active-link {
+    color: red;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover, button:hover {
+    color: red;
+}
+
+.button {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 999px;
+    padding: 0.5em 0.7em;
+    height: fit-content;
+    line-height: 1;
+}
+
+* { 
+    font-feature-settings: 'ss02';
+}
+
+
+.plyr--full-ui input[type=range] {
+    color: white !important;
+}
+
+.plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+    background: red !important;
+}
+
+.CookieConsent {
+    background-color: #ffffff !important;
+    border-top: 1px solid black !important;
+  }
+  
+  .CookieConsent p {
+    margin: 0;
+    color: black;
+  }
+
+  
+  .CookieConsent > div:nth-child(1) {
+    margin: 10px !important;
+  }
+  
+  @media (max-width: 989px) {
+    .CookieConsent > div:nth-child(2) {
+      margin-left: auto;
+    }
+  }
+  
+  .CookieConsent #rcc-decline-button,
+  .CookieConsent #rcc-confirm-button {
+    color: black !important;
+    background: transparent !important;
+    margin: 10px !important;
+  }
+  
+  .CookieConsent #rcc-confirm-button {
+    border: 1px solid black !important;
+  }
+
+  @media(min-width: 1800px) {
+      html {
+          max-width: 1800px;
+          margin: 0 auto;
+      }
+  }
+
+  .layout {
+      margin-top: 77px;
+  }
+
+  /* @media(max-width: 767px) {
+    .layout {
+        margin-top: 50px;
+    } 
+  } */
+
+  header {
+      background: white;
+  }
+
+  header > div:nth-child(1) a {
+    color: black !important;
+  }
+
+  /* ------------------------------- Dark Styles ------------------------------ */
+
+  .dark-background {
+      background: black;
+      color: white;
+  }
+
+  .dark-background header {
+      background: black;
+  }
+
+  .dark-background header > div:nth-child(1) a {
+    color: white !important;
+  }
+
+  .dark-background .nav-mobile-burger > div {
+      background: white !important;
+  }
+
+  .dark-background .nav--open {
+      background: black;
+  }
+
+  .dark-background .border-bottom::after, .dark-background .border-top::before {
+      background: white;
+  }
+
+    .dark-background .season-filters {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .dark-background .season-filter__selector {
+        background-color: black !important;
+    }
+
+    .dark-background .season-filter:hover  .season-filter__selector,
+    .dark-background .season-filter--active .season-filter__selector
+     {
+        background-color: red !important;
+    }
+
+    .season-filter__label {
+        color: white !important;
+    }
+
+    .dark-background .season-filter__label {
+        color: black !important;
+    }
+
+    .dark-background .arrow-prev::after, .dark-background .arrow-next::after  {
+        border-top: 5px solid white !important;
+    }
+
+    .dark-background .arrow-prev:hover::after, .dark-background .arrow-next:hover::after  {
+        border-top: 5px solid red !important;
+    }
+
+    .dark-background .home-calendar__day--has-event::after {
+        background: white !important;
+    }
+
+    .dark-background .home-calendar__day--has-two-events::before {
+        background: white !important;
+    }
+
+    .dark-background button {
+        border-color: white !important;
+    }
+
+    button:hover, .button:hover {
+        border-color: red !important;
+        color: red;
+    }
+
+    .dark-background input::placeholder {
+        color: white !important;
+    }
+
+    .dark-background input {
+        border-color: white !important;
+    }
+
+    .dark-background .home-calendar__modal {
+        background-color: black !important;
+        border: 1px solid white !important;
+    }
+
+    .dark-background .home-calendar__event:hover a {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .dark-background .home-calendar__event {
+        border-top: 1px solid white !important;
+    }
+
+    .dark-background .event-tile:hover a {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .dark-background .button {
+        border: 1px solid white;
+    }
+
+    .button.active-link {
+        border: 1px solid red;
+    }
+
+    .dark-background .media-item:hover > a
+     {
+        background: white;
+        color: black;
+    }
+
+/* -------------------------------------------------------------------------- */
+/*                                    Fonts                                   */
+/* -------------------------------------------------------------------------- */
+
+h1, .h1 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 5rem; */
+    font-size: 3.3rem;
+    letter-spacing: -0.03em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1;
+}
+
+h2, .h2 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 4rem; */
+    font-size: 2.8rem;
+    letter-spacing: -0.04em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;
+}
+
+h3, .h3 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 2.8rem; */
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;
+}
+
+h4, .h4 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 1.8rem; */
+    /* font-size: 1.3rem; */
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;
+}
+
+h5, .h5 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 1.6rem; */
+    /* font-size: 1.12rem; */
+    /* font-size: 1.3rem; */
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;
+}
+
+h6, .h6 {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 1.3rem; */
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;
+}
+
+
+p, .p {
+    font-family: "Es Klarheit Grotesk Medium";
+    /* font-size: 1.3rem; */
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    font-weight: 100;
+    margin: 10px 0;
+    line-height: 1.3;
+}
+
+input, input::placeholder, button, .error-label {
+    font-family: "Es Klarheit Grotesk Medium";
+    font-size: 1rem;
+}
+
+time {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.caption {
+    font-family: "Es Klarheit Grotesk Medium";
+    display: inline-block;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+@media(max-width: 768px) {
+    h1, .h1 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 2.5rem;
+        letter-spacing: -0.03em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1;
+    }
+    
+    h2, .h2 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 2rem;
+        letter-spacing: -0.04em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    h3, .h3 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    h4, .h4 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    h5, .h5 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    h6, .h6 {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 100;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    p, .p {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 100;
+        margin: 10px 0;
+        line-height: 1.3;
+    }
+
+    input, input::placeholder, button {
+        font-family: "Es Klarheit Grotesk Medium";
+        font-size: 1rem;
+    }
+
+    time {
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+    }
+}
