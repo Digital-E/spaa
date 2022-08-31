@@ -1,5 +1,7 @@
 import '../styles/index.css'
 
+import "../styles/flickity.css";
+
 import { useEffect } from 'react'
 
 import Body from "../components/body"
@@ -21,7 +23,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <>
-      {/* <Header data={pageProps.data?.menuData} /> */}
+      <Header data={pageProps.data?.menuData} />
       {/* <CookieConsent
         buttonText={pageProps.data?.menuData.cookieaccept}
         declineButtonText={pageProps.data?.menuData.cookierefuse}

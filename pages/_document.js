@@ -31,9 +31,9 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en" className="dark-background">
+      <Html lang="en">
         <Head />
-        <body className="dark-background">
+        <body>
           <Main />
           <NextScript />
         </body>

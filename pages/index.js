@@ -5,11 +5,11 @@ export default function Index({}) {
     useEffect(() => {
         let lang = window.navigator.language
         if(lang === "en-GB") {
-            router.replace("/en_gb")
+            router.replace("/en")
         } else if (lang === "fr-FR") {
             router.replace("/fr")
         } else {
-            router.replace("/fr")
+            router.replace("/de")
         }
     },[])
 

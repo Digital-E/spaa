@@ -14,7 +14,6 @@ let Container = styled.header`
   z-index: 2;
   top: 0;
 
-
   max-width: 1800px;
 
   > .h4 {
@@ -62,7 +61,7 @@ let Container = styled.header`
     display: none;
 }
 
-@media(max-width: 1060px) {
+@media(max-width: 989px) {
   background: white;
   
   .nav-mobile-burger {
@@ -74,34 +73,12 @@ let Container = styled.header`
 
 let List = styled.ul`
   display: flex;
-  flex-direction: row;
-
+  flex-direction: column;
   width: 100%;
-  display: flex;
   justify-content: flex-start;
-
-  @media(min-width: 1061px) {
-    align-items: center;
-  }
-
-  @media(min-width: 768px) and (max-width: 1300px) {
-    // .h4 {
-    //   font-size: 1rem !important;
-    // }
-  }
 `
 
 let ListItem = styled.li`
-  &&:last-child {
-      margin-left: auto;
-      margin-right: 0;
-      // border: 1px solid white;
-      // border-radius: 999px;
-      // padding: 0.5em 0.7em;
-      // height: -webkit-fit-content;
-      // height: -moz-fit-content;
-      // height: fit-content;
-  }
 `
 
 let Menu = styled.div`
@@ -110,7 +87,7 @@ let Menu = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  flex-basis: 70%;
+  flex-basis: 60%;
   // max-width: 1100px;
 
   > ul:nth-child(1) > li {
@@ -122,11 +99,11 @@ let Menu = styled.div`
     margin-left: 0;
   }
 
-  @media(max-width: 1060px) {
+  @media(max-width: 989px) {
     display: none;
     position: absolute;
     flex-direction: column;
-    padding: 75px 20px 20px 20px;
+    padding: 150px 20px 20px 20px;
     border-bottom: 1px solid black;
     background: white;
 
@@ -143,10 +120,6 @@ let Menu = styled.div`
       display: flex;
     }
   }
-
-  @media(max-width: 1230px) {
-    flex-basis: 80%;
-  }
 `
 
 
@@ -159,7 +132,7 @@ let LanguageSwitch = styled.div`
   }
 
 
-  @media(max-width: 1060px) {
+  @media(max-width: 989px) {
     margin-left: 0;
     margin-top: 20px;
 
@@ -188,7 +161,12 @@ export default function Header({ data }) {
           setMenuOpen(false);
           sessionStorage.setItem('contrechampsAcceptedSound', "true");
           }}>
-          <Link href={`/${router.asPath.split("/")[1]}`}>Contrechamps</Link>
+          <Link href={`/${router.asPath.split("/")[1]}`}>
+            Performancepreis Schweiz <br/>
+            Prix Suisse de la Performance <br/>
+            Premio Svizzero del la Performance <br/>
+            Swiss Performance Art Award
+          </Link>
       </div>
       <div class="nav-mobile-burger" onClick={() => setMenuOpen(!menuOpen)}>
         <div></div>
@@ -204,12 +182,14 @@ export default function Header({ data }) {
           })
           }
         </List>
-        {/* <LanguageSwitch>
+        <LanguageSwitch>
           <List>
-            <ListItem><div className="h4"><LocaleLink href="/en_gb">En</LocaleLink></div></ListItem>
-            <ListItem><div className="h4"><LocaleLink href="/fr">Fr</LocaleLink></div></ListItem>
+            <ListItem><div className="h4"><LocaleLink href="/de">DE</LocaleLink></div></ListItem>
+            <ListItem><div className="h4"><LocaleLink href="/fr">FR</LocaleLink></div></ListItem>
+            <ListItem><div className="h4"><LocaleLink href="/it">IT</LocaleLink></div></ListItem>
+            <ListItem><div className="h4"><LocaleLink href="/en">EN</LocaleLink></div></ListItem>
           </List> 
-        </LanguageSwitch> */}
+        </LanguageSwitch>
       </Menu>
     </Container>
   )
