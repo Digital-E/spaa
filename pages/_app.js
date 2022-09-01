@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps, router }) {
       <RouterScrollProvider>     
         <Component {...pageProps} />
       </RouterScrollProvider> 
-      {/* <Footer data={pageProps.data?.footerData}/> */}
+      <Footer data={pageProps.data?.footerData}/>
     </>
   )
 }

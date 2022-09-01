@@ -87,7 +87,7 @@ let Menu = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  flex-basis: 60%;
+  flex-basis: 65%;
   // max-width: 1100px;
 
   > ul:nth-child(1) > li {

@@ -13,7 +13,8 @@ if (typeof window !== "undefined") {
   }
 
 const Container = styled.div`
-    z-index: 999;
+    position: relative;
+    z-index: 0;
     top: 0;
     left: 0;
 

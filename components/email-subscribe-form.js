@@ -2,26 +2,16 @@ import { Formik, Form, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
-// import Button from "./button"
-
 
 const Container = styled.div`
-
     padding: 0;
-
-    // margin: 10px 0;
-
-    label {
-      text-transform: lowercase;
-      display: none;
-    }
 
     form {
         display: flex;
         flex-direction: row;
     }
 
-    @media(max-width: 1330px) {
+    @media(max-width: 989px) {
       form {
         flex-direction: column;
       }
@@ -29,9 +19,12 @@ const Container = styled.div`
 
     form input {
         background-color: transparent;
-        padding: 5px 25px;
-        border: 1px solid black;
-        height: 40px;
+        padding: 0;
+        border-bottom: 2.5px dotted black;
+        height: 25px;
+        flex-grow: 1;
+        padding: 0;
+        margin: 0 5px -2px 5px;
     }
 
     form input::placeholder {
@@ -40,28 +33,23 @@ const Container = styled.div`
 
     form input:focus {
         outline: none;
-        border: 1px solid black;
-    }
-
-    .text-input {
-        width: 100%;
-        border-radius: 999px;
+        border-bottom: 2.5px dotted #70706f;
     }
 
     .text-input.error {
-        border: 1px solid red;
+      border-bottom: 2.5px dotted red;
     }
 
     .error-label {
       position: absolute;
       right: 10px;
-      color: gray;
+      color: #70706f;
+      pointer-events: none;
     }
 
 
     .checkbox {
         display: flex;
-        // align-items: center;
         margin-bottom: 15px;
         cursor: pointer;
     }
@@ -82,31 +70,23 @@ const Container = styled.div`
     }
 
     button {
+        display: flex;
+        align-items center;
         -webkit-appearance: none;
         border: none;
         background: none;
         width: fit-content;
-        margin: 0 auto 0 0.5em;
-        height: fit-content;
-        border: 1px solid black;
-        border-radius: 999px;
-        padding: 5px 25px;
-        height: 40px;
+        margin: 0 0 0 20px;
     }
 
-    @media(max-width: 1330px) {
+    @media(max-width: 989px) {
       button {
-        margin: 0;
+        margin: 20px 0 0 0;
       }
     }
 
-    .disabled {
-        // pointer-events: none;
-        // opacity: 0.3;
-    }
-
-    @media(max-width: 1330px) {
-      margin: 30px 0;
+    button:hover #circle {
+      background-color: #70706f;
     }
 `;
 
@@ -114,28 +94,24 @@ const Input = styled.div`
     position: relative;
     display: flex;
     flex-grow: 1;
-    margin-bottom: 10px;
     align-items: center;
-
-    > label:nth-child(1) {
-      flex-basis: 23%;
-    }
-
-    > div:nth-child(2) {
-      flex-basis: 77%;
-    }
+    margin-left: 20px;
 
     @media(max-width: 989px) {
-      > label:nth-child(1) {
-        flex-basis: 35%;
-      }
-
-      > div:nth-child(2) {
-        flex-basis: 65%;
-      }
+      margin-left: 0;
     }
 `
 
+const Circle = styled.div`
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    min-height: 15px;
+    min-width: 15px;
+    border: 1px solid black;
+    border-radius: 999px;
+    margin: 2px 0 0 5px;
+`
 
 
 
@@ -145,7 +121,7 @@ const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <Input>
-      <label htmlFor={props.id || props.name} className="medium-font-size">{label}*</label>
+      <label htmlFor={props.id || props.name} className="medium-font-size"><p>{label}:</p></label>
       <input className={meta.touched && meta.error ? "text-input error medium-font-size" : "text-input medium-font-size"} {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error-label">{meta.error}</div>
@@ -181,7 +157,7 @@ const Submit = ({ children, ...props}) => {
 
 
     return (
-        <button type="submit" id="submit-button" className={isActive ? null : "disabled"}>
+        <button type="submit" id="submit-button">
             {children}
         </button>
     )
@@ -264,14 +240,15 @@ const SignupForm = ({ data }) => {
     <Container>
       <Formik
         initialValues={{
-          surname: "",
           name: "",
           email: "",
         }}
         validationSchema={Yup.object({
           email: Yup.string()
             .email("Invalid")
-            .required("Required")
+            .required("Required"),
+          name: Yup.string()
+            .required("Required")            
         })}
         onSubmit={async (values, { setSubmitting }) => {
           // await new Promise(r => setTimeout(r, 500));
@@ -279,14 +256,20 @@ const SignupForm = ({ data }) => {
           addEmailToList(values);
         }}
       >
-        <Form>                         
+        <Form>    
             <MyTextInput
-            label={data.text_three}
+            label={data.namePlaceholder}
+            name="name"
+            type="text"
+            placeholder={""}
+            />                                  
+            <MyTextInput
+            label={data.emailPlaceholder}
             name="email"
             type="email"
-            placeholder={data.emailPlaceholder}
+            placeholder={""}
             />       
-            <Submit>{data.submitButtonText}</Submit>
+            <Submit>{data.submitButtonText}<Circle id="circle" /></Submit>
         </Form>
       </Formik>
     </Container>
