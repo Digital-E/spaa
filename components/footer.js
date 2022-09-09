@@ -40,7 +40,7 @@ let LinkWrapper = styled.div`
 export default function Header({ data }) {
   let router = useRouter();
   
-  if(data === undefined) return null;
+  if(data === undefined || data === null) return null;
 
   return (
     <Container>

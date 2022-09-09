@@ -13,13 +13,15 @@ if (typeof window !== "undefined") {
   }
 
 const Container = styled.div`
-    position: relative;
+    position: fixed;
     z-index: 0;
-    top: 0;
+    top: 84px;
+    height: calc(100vh - 84px);
+    width: 100vw;
     left: 0;
 
     .flickity-viewport {
-        height: 100vh;
+        height: calc(100vh - 84px);
         width: 100vw;
         max-width: 1800px;
         overflow: visible !important;

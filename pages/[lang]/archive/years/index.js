@@ -2,19 +2,17 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Layout from '../../../components/layout'
-import { SITE_NAME } from '../../../lib/constants'
-import { yearQuery, menuQuery, footerQuery } from '../../../lib/queries'
-import { getClient } from '../../../lib/sanity.server'
-
-import Link from "../../../components/link"
-
+import Layout from '../../../../components/layout'
+import { SITE_NAME } from '../../../../lib/constants'
+import { yearsQuery, menuQuery, footerQuery } from '../../../../lib/queries'
+import { getClient } from '../../../../lib/sanity.server'
 import styled from 'styled-components'
 
-const Container = styled.div`
-`
+import Link from "../../../../components/link"
 
-const Col = styled.div`
+import Filter from "../../../../components/archive/filter"
+
+const Container = styled.div`
 `
 
 const Years = styled.div`
@@ -59,12 +57,13 @@ export default function YearPage({ data = {}, preview }) {
           <title>{data?.yearData?.title} | { SITE_NAME }</title>
           <meta
           name="description"
-          content={data?.aboutData?.content}
+          content={data?.yearData?.content}
           />
         </Head>
         <Container>
+            <Filter />
             <Years>
-                {data.yearData.slices.map(item => <Year><Link href={`/${router.query.lang}/archive/year/${item}`}><p>{item}</p></Link></Year>)}
+                {data.yearData.slices?.map(item => <Year><Link href={`/${router.query.lang}/archive/years/${item}`}><p>{item}</p></Link></Year>)}
             </Years>
         </Container>
       </Layout>
@@ -74,9 +73,9 @@ export default function YearPage({ data = {}, preview }) {
 
 export async function getStaticProps({ preview = false, params }) {
 
-  let slug = `${params.lang}__archive__year`
+  let slug = `${params.lang}__archive__years`
 
-  const yearData = await getClient(preview).fetch(yearQuery, {
+  const yearData = await getClient(preview).fetch(yearsQuery, {
     slug: slug,
   })
 

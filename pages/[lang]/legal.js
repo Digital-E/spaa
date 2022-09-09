@@ -97,7 +97,7 @@ export async function getStaticProps({ params, preview = false }) {
 
 
 export async function getStaticPaths() {
-  const paths = ['fr', 'en_gb'];
+  const paths = ['de', 'fr', 'it', 'en'];
   
   return {
     paths: paths.map((slug) => ({ params: { lang: slug } })),
