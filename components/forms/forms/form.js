@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 // import { store } from "../../../../store";
 
-import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect} from './form-components'
+import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
 
 
 function Component({ data }) {
@@ -12,30 +12,30 @@ function Component({ data }) {
     // const context = useContext(store);
     // const { state, dispatch } = context;
 
-    // const addEmailToList = async (values) => {
-    //     let dataObj = {
-    //       email: values.email,
+    // const addtextToList = async (values) => {
+    //     let fieldsObj = {
+    //       text: values.text,
     //     }
     
     //   try {
     //       const res = await fetch("/api/subscribe", {
     //         "method": "POST",
     //         "headers": { "Content-Type": "application/json" },
-    //         "body": JSON.stringify(dataObj)
+    //         "body": JSON.stringify(fieldsObj)
     //       })
     //       .then((response) => response.json())
-    //       .then(data => {
-    //         if(data.result !== "error") {
+    //       .then(fields => {
+    //         if(fields.result !== "error") {
     //           document.querySelectorAll(".text-input").forEach(item => {
-    //             item.value="";
+    //             item="";
     //             document.querySelector("#submit-button").innerText = "✓"
     //             // item.placeholder="Thanks for subscribing!";
     //           })
     //         } else {
     //           document.querySelectorAll(".text-input").forEach(item => {
-    //             item.value="";
-    //             document.querySelector("#submit-button").innerText = data.error
-    //             // item.placeholder = data.message;
+    //             item="";
+    //             document.querySelector("#submit-button").innerText = fields.error
+    //             // item.placeholder = fields.message;
     //           })
     //         }
     //       })
@@ -44,145 +44,188 @@ function Component({ data }) {
     //     }
     //   }
 
+    let fields = data.fields;
+
     return (
         <Container>
             <Formik
             initialValues={{
             name: "",
-            website: "",
+            firstName: "",
+            dob: "",
+            nationality: "",
+            residentOfSwitzerlandSince: "",
+            streetNumber: "",
+            postalCodeTown: "",
+            phoneNumber: "",
             email: "",
-            information: "",
-            checkboxOne: true,
-            checkboxTwo: false
+            bankAccount: "",
+            showing: "",
+            authorship: "",
+            otherParticipants: "",
+            websitesAndLinks: "",
+            confirmation: "",
+            uploadOne: "",
+            uploadTwo: "",
+            uploadThree: "",
+            // checkboxOne: true,
+            // checkboxTwo: false
             }}
             validationSchema={Yup.object({
             name: Yup.string()
             .required("Required"),
-            website: Yup.string()
+            firstName:  Yup.string()
+            .required("Required"),
+            dob:  Yup.string()
+            .required("Required"),
+            nationality: Yup.string()
+            .required("Required"),
+            residentOfSwitzerlandSince: Yup.string()
+            .required("Required"),
+            streetNumber: Yup.string()
+            .required("Required"),
+            postalCodeTown: Yup.string()
+            .required("Required"),
+            phoneNumber: Yup.string()
             .required("Required"),
             email: Yup.string()
-            .email("Invalid")
-            .required("Required"),
-            information: Yup.string(),
-            checkboxOne: Yup.boolean()
             .required("Required")
-            .oneOf([true], "You must accept the terms and conditions."),
-            checkboxTwo: Yup.boolean()
+            .email("Invalid"),
+            bankAccount: Yup.string()
+            .required("Required"),
+            showing: Yup.string()
+            .required("Required"),
+            authorship: Yup.string()
+            .required("Required"),
+            otherParticipants: Yup.string()
+            .required("Required"),
+            websitesAndLinks: Yup.string()
+            .required("Required"),
+            confirmation: Yup.string()
+            .required("Required"),
+            uploadOne: "",
+            uploadTwo: "",
+            uploadThree: "",
+            // checkboxOne: Yup.boolean()
+            // .required("Required")
+            // .oneOf([true], "You must accept the terms and conditions."),
+            // checkboxTwo: Yup.boolean()
             })}
             onSubmit={async (values, { setSubmitting }) => {
             // await new Promise(r => setTimeout(r, 500));
             // setSubmitting(false);
-            // addEmailToList(values);
-            dispatch({type: "update notification message", value: data.signUpConfirmationText})
+            // addtextToList(values);
+            // dispatch({type: "update notification message", value: fields.signUpConfirmationText})
             }}
             >
-            <Form>   
+            <Form>  
                 <MyTextInput
-                label={`${data[0].value}*:`}
+                label={`${fields[0].label}*:`}
                 name="name"
                 type="text"
                 placeholder={''}
                 />              
                 <MyTextInput
-                label={`${data[1].value}*:`}
-                name="website"
+                label={`${fields[1].label}*:`}
+                name="firstName"
                 type="text"
                 placeholder={''}
                 />                                    
                 <MyTextInput
-                label={`${data[2].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[2].label}*:`}
+                name="dob"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[3].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[3].label}*:`}
+                name="nationality"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[4].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[4].label}*:`}
+                name="residentOfSwitzerlandSince"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[5].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[5].label}*:`}
+                name="streetNumber"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[6].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[6].label}*:`}
+                name="postalCodeTown"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[7].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[7].label}*:`}
+                name="phoneNumber"
+                type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${data[8].value}*:`}
+                label={`${fields[8].label}*:`}
                 name="email"
                 type="email"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[9].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[9].label}*:`}
+                name="bankAccount"
+                type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${data[10].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[10].label}*:`}
+                name="showing"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[13].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[13].label}*:`}
+                name="authorship"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[14].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[14].label}*:`}
+                name="otherParticipants"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[15].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[15].label}*:`}
+                name="websitesAndLinks"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[16].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[16].label}*:`}
+                name="confirmation"
+                type="text"
                 placeholder={''}
                 />
+                <Title>{data.subtitleTwo}</Title>
                 <MyTextInput
-                label={`${data[18].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[18].label}*:`}
+                name="uploadOne"
+                type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${data[19].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[19].label}*:`}
+                name="uploadTwo"
+                type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${data[20].value}*:`}
-                name="email"
-                type="email"
+                label={`${fields[20].label}*:`}
+                name="uploadThree"
+                type="text"
                 placeholder={''}
                 />                                                                                                                                                                                                                                                                                   
                 {/* <MyTextArea
@@ -193,7 +236,7 @@ function Component({ data }) {
                 <MyCheckbox
                 name="checkboxOne"
                 >
-                I consent for my data to be used for the purpose of the Declaration
+                I consent for my fields to be used for the purpose of the Declaration
                 </MyCheckbox> 
                 <MyCheckbox
                 name="checkboxTwo"

@@ -239,7 +239,7 @@ const Input = styled.div`
     display: flex;
     flex-grow: 1;
     align-items: center;
-    margin: 0 0 10px 0;
+    margin: 0 0 10px 0; 
 
     @media(max-width: 989px) {
 
@@ -278,6 +278,11 @@ const SubmitMessageMobile = styled.div`
 
 
 const ButtonWrapper = styled.button``
+
+const Title = styled.p`
+    margin: 30px auto;
+    width: fit-content;
+`
 
 let initButton = false;
 
@@ -370,7 +375,7 @@ const Submit = ({ children, ...props}) => {
 
 
   return (
-      <button type="submit" id="submit-button">
+      <button type="submit" id="submit-button" onClick={() => initButton = true}>
           {children}
       </button>
   )
@@ -415,4 +420,4 @@ const MySelect = ({ label, ...props }) => {
 };
 
 
-export {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect}
+export {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title}
