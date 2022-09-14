@@ -157,10 +157,7 @@ export default function Header({ data }) {
   return (
     <Container className={menuOpen ? "nav--open" : ""}>
       <div className="h4" 
-        onClick={() => {
-          setMenuOpen(false);
-          sessionStorage.setItem('contrechampsAcceptedSound', "true");
-          }}>
+        onClick={() => {setMenuOpen(false);}}>
           <Link href={`/${router.asPath.split("/")[1]}`}>
             Performancepreis Schweiz <br/>
             Prix Suisse de la Performance <br/>

@@ -9,9 +9,12 @@ import { getClient } from '../../lib/sanity.server'
 
 import styled from 'styled-components'
 
+import BackgroundDots from '../../components/home/background-dots'
+import Form from '../../components/forms/index.js'
 import Body from "../../components/body"
 
 const Container = styled.div`
+    position: relative;
     display: flex;
     margin-top: 100px;
 
@@ -21,6 +24,10 @@ const Container = styled.div`
 `
 
 const Title = styled.div`
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%, 0);
     text-align: center;
 
     span {
@@ -29,38 +36,6 @@ const Title = styled.div`
     }
 `
 
-const Col = styled.div`
-    padding: 20px;
-
-    :nth-child(1) {
-        flex-basis: 35%;
-        padding-left: 0;
-    }
-
-    :nth-child(2) {
-        flex-basis: 35%;
-        padding-left: 0;
-    }
-
-    > div {
-        width: 80%;
-    }
-
-    :nth-child(3) {
-        flex-basis: 20%;
-    }
-
-    @media(max-width: 989px) {
-        > div {
-            width: 100%;
-        }
-
-        :nth-child(3) {
-            margin-left: 0;
-            padding-left: 0;
-        }
-    }
-`
 
 export default function About({ data = {}, preview }) {
 
@@ -83,23 +58,11 @@ export default function About({ data = {}, preview }) {
           />
         </Head>
         <Title><span>{data?.applicationData?.title}</span></Title>
-        {/* <Container>
-            <Col>
-                <div>
-                    <Body content={data?.applicationData?.textcolumnone} />
-                </div>
-            </Col>
-            <Col>
-                <div>
-                    <Body content={data?.applicationData?.textcolumntwo} />
-                </div>
-            </Col>
-            <Col>
-                <div>
-                    <Body content={data?.applicationData?.textcolumnthree} />
-                </div>
-            </Col>
-        </Container> */}
+        <Container>
+          <BackgroundDots />
+          <Form />
+          {/* <Body content={data?.applicationData?.textcolumnone} /> */}
+        </Container>
       </Layout>
     </>
   )

@@ -10,7 +10,6 @@ import { SITE_NAME } from '../../lib/constants'
 import { legalQuery, menuQuery, footerQuery } from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
-import MediaHeader from "../../components/media/media-page/media-header"
 import Body from "../../components/body"
 
 const Wrapper = styled.div`
