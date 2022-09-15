@@ -3,149 +3,7 @@ import { useField, useFormikContext } from "formik";
 
 import styled from "styled-components";
 
-import Button from "../../button";
 
-
-const ContainerOld = styled.div`
-    padding: 0;
-
-    label {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 20px;
-        color: var(--ternary-color);
-        pointer-events: none;
-    }
-
-    @media(max-width: 989px) {
-      label {
-        left: 10px;
-      }
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    form input {
-        background-color: transparent;
-        padding: 5px 20px;
-        border: 1px solid var(--ternary-color);
-        width: 100%;
-        height: 60px;
-        color: var(--secondary-color);
-        border-radius: 0;
-    }
-
-    @media(max-width: 989px) {
-      form input {
-        padding: 10px;
-      }
-    }
-
-    form textarea {
-        background-color: transparent;
-        padding: 20px;
-        border: 1px solid var(--ternary-color);
-        width: 100%;
-        height: 160px;
-        color: var(--secondary-color);
-        resize: vertical;
-    }
-
-    @media(max-width: 989px) {
-      form textarea {
-        padding: 15px 10px;
-      }
-    }
-
-    form input::placeholder,
-    form textarea::placeholder
-        {
-        color: var(--ternary-color);
-    }
-
-    form input:focus,
-    form textarea:focus
-        {
-        outline: none;
-        border: 1px solid var(--secondary-color);
-    }
-
-    input.text-input {
-      height: 60px;
-      box-sizing: border-box;
-    }
-
-    .text-input.error {
-        border: 1px solid red;
-    }
-
-    .error-label {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: gray;
-    }
-
-
-    .checkbox {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 10px;
-    }
-
-    .checkbox > input {
-        position: relative;
-        height: 15px;
-        width: 15px;
-        min-height: 15px;
-        min-width: 15px;
-        -webkit-appearance: none;
-        border: 1px solid var(--ternary-color);
-        margin-right: 10px;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .checkbox > input:checked::after {
-        content: '';
-        width: 15px;
-        height: 15px;
-        background: url('icons/tick.svg') no-repeat center;
-        position: absolute;
-        left: -1px;
-        top: -1px;
-    }
-
-    .checkbox label {
-        position: relative;
-        left: 0;
-        transform: none;
-        margin-top: 3px;
-    }
-
-    .checkbox-error input {
-        border: 1px solid red;
-    }
-
-    .checkbox-error label {
-        color: red;
-    }
-
-    button {
-        margin-top: 30px;
-    }
-
-    .disabled {
-        // pointer-events: none;
-        // opacity: 0.3;
-    }
-`;
 
 const Container = styled.div`
     padding: 0;
@@ -195,7 +53,6 @@ const Container = styled.div`
     .checkbox {
         display: flex;
         margin-bottom: 15px;
-        cursor: pointer;
     }
 
     .checkbox > input {
@@ -205,12 +62,18 @@ const Container = styled.div`
         min-width: 15px;
         border-radius: 999px;
         -webkit-appearance: none;
-        border: 1px solid #AC9E95;
-        margin-right: 25px;
+        border: 1px solid black !important;
+        margin-left: 10px;
+        flex-grow: initial;
+        cursor: pointer;
     }
 
     .checkbox > input:checked {
         background: #b0b0b0;
+    }
+
+    .checkbox-error > label {
+      color: red;
     }
 
     button {
@@ -220,7 +83,6 @@ const Container = styled.div`
         border: none;
         background: none;
         width: fit-content;
-        margin: 0 0 0 20px;
     }
 
     @media(max-width: 989px) {
@@ -284,6 +146,38 @@ const Title = styled.p`
     width: fit-content;
 `
 
+const Radio = styled.div`
+    display: flex;
+
+    &&.error > label {
+      color: red;
+    }
+
+    fieldset > div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    fieldset input {
+      -webkit-appearance: none;
+      width: 15px;
+      height: 15px;
+      min-width: 15px;
+      min-height: 15px;
+      border-radius: 999px;
+      border: 1px solid black !important;
+      flex-grow: initial;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    fieldset input.is-selected {
+      background: gray;
+    }
+`
+
+
 let initButton = false;
 
 let removeError = false;
@@ -331,8 +225,8 @@ const MyCheckbox = ({ children, ...props }) => {
   return (
     <>
       <div className={meta.touched && meta.error ? "checkbox checkbox-error" : "checkbox"}>
-        <input {...field} {...props} type="checkbox" />
         <label className="small-text" htmlFor={props.id || props.name}>{children}</label>
+        <input {...field} {...props} type="checkbox" />
       </div>
       {/* {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
@@ -340,6 +234,52 @@ const MyCheckbox = ({ children, ...props }) => {
     </>
   );
 };
+
+const MyRadio = ({ label, list, ...props }) => {
+  const [field, meta] = useField({ ...props, type: "radio" });
+
+  
+  return (
+    <>
+      <Radio className={meta.touched && meta.error ? "error" : ""}>
+        <label className="small-text" htmlFor={props.id || props.name}>{label}</label>
+        <fieldset>
+          {
+            list.map((item) => 
+              <div>
+                <input  {...field} {...props} value={item} className={meta.value === item ? "is-selected radio" : "radio"} />
+                <label className="small-text" htmlFor={item}>{item}</label>
+              </div>              
+              )
+          }
+        </fieldset>
+      </Radio>
+      {/* {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null} */}
+    </>
+  );
+};
+
+{/* <fieldset>
+    <legend>Select a maintenance drone:</legend>
+
+    <div>
+      <input type="radio" id="huey" name="drone" value="huey"
+             checked>
+      <label for="huey">Huey</label>
+    </div>
+
+    <div>
+      <input type="radio" id="dewey" name="drone" value="dewey">
+      <label for="dewey">Dewey</label>
+    </div>
+
+    <div>
+      <input type="radio" id="louie" name="drone" value="louie">
+      <label for="louie">Louie</label>
+    </div>
+</fieldset> */}
 
 // const Submit = ({ children, ...props}) => {
 //     const {isValid, touched } = useFormikContext();
@@ -420,4 +360,4 @@ const MySelect = ({ label, ...props }) => {
 };
 
 
-export {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title}
+export {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title}

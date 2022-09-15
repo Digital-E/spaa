@@ -118,8 +118,6 @@ export async function getStaticProps({ preview = false, params }) {
       preview,
       data: {
         aboutData,
-        // news,
-        // events,
         menuData,
         footerData
       }

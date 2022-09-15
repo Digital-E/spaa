@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 // import { store } from "../../../../store";
 
-import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
+import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
 
 
 function Component({ data }) {
@@ -64,7 +64,7 @@ function Component({ data }) {
             authorship: "",
             otherParticipants: "",
             websitesAndLinks: "",
-            confirmation: "",
+            confirmation: false,
             uploadOne: "",
             uploadTwo: "",
             uploadThree: "",
@@ -95,14 +95,16 @@ function Component({ data }) {
             .required("Required"),
             showing: Yup.string()
             .required("Required"),
+            // .oneOf([fields[11].label , fields[12].label]),
             authorship: Yup.string()
             .required("Required"),
             otherParticipants: Yup.string()
             .required("Required"),
             websitesAndLinks: Yup.string()
             .required("Required"),
-            confirmation: Yup.string()
-            .required("Required"),
+            confirmation: Yup.boolean()
+            .required("Required")
+            .oneOf([true], "Must fill in."),
             uploadOne: "",
             uploadTwo: "",
             uploadThree: "",
@@ -112,6 +114,7 @@ function Component({ data }) {
             // checkboxTwo: Yup.boolean()
             })}
             onSubmit={async (values, { setSubmitting }) => {
+            console.log(values)
             // await new Promise(r => setTimeout(r, 500));
             // setSubmitting(false);
             // addtextToList(values);
@@ -179,11 +182,11 @@ function Component({ data }) {
                 type="text"
                 placeholder={''}
                 /> 
-                <MyTextInput
+                <MyRadio
                 label={`${fields[10].label}*:`}
                 name="showing"
-                type="text"
-                placeholder={''}
+                type="radio"
+                list={[fields[11].label, fields[12].label]}
                 />
                 <MyTextInput
                 label={`${fields[13].label}*:`}
@@ -203,27 +206,32 @@ function Component({ data }) {
                 type="text"
                 placeholder={''}
                 />
-                <MyTextInput
+                {/* <MyTextInput
                 label={`${fields[16].label}*:`}
                 name="confirmation"
                 type="text"
                 placeholder={''}
-                />
+                /> */}
+                <MyCheckbox
+                name="confirmation"
+                >
+                {`${fields[16].label}*:`}
+                </MyCheckbox>                 
                 <Title>{data.subtitleTwo}</Title>
                 <MyTextInput
-                label={`${fields[18].label}*:`}
+                label={`${fields[18].label}:`}
                 name="uploadOne"
                 type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${fields[19].label}*:`}
+                label={`${fields[19].label}:`}
                 name="uploadTwo"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[20].label}*:`}
+                label={`${fields[20].label}:`}
                 name="uploadThree"
                 type="text"
                 placeholder={''}
@@ -232,13 +240,13 @@ function Component({ data }) {
                 label={''}
                 name="information"
                 placeholder={'Why are you declaring? In a sentence or two, tell us why you’re joining Design Declares'}
-                />
-                <MyCheckbox
+                /> */}
+                {/* <MyCheckbox
                 name="checkboxOne"
                 >
                 I consent for my fields to be used for the purpose of the Declaration
-                </MyCheckbox> 
-                <MyCheckbox
+                </MyCheckbox>  */}
+                {/* <MyCheckbox
                 name="checkboxTwo"
                 >
                 I consent for my name and reason for joining to be used in the promotion of the Declaration on this site, and across our social channels

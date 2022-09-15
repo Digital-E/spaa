@@ -35,7 +35,6 @@ const Year = styled.div`
     p {
         font-size: 12vw !important;
         line-height: 1;
-        // margin: 0;
     }
 `
 
