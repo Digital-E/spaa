@@ -1,13 +1,25 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Formik, Form, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 // import { store } from "../../../../store";
 
-import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
+import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, MyUpload, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
 
 
 function Component({ data }) {
+    let [attachmentNameOne, setAttachmentNameOne] = useState(null)
+    let [attachmentBlobOne, setAttachmentBlobOne] = useState(null)
+
+    let [attachmentNameTwo, setAttachmentNameTwo] = useState(null)
+    let [attachmentBlobTwo, setAttachmentBlobTwo] = useState(null)
+
+    let [attachmentNameThree, setAttachmentNameThree] = useState(null)
+    let [attachmentBlobThree, setAttachmentBlobThree] = useState(null)
+
+    const SUPPORTED_FORMATS = ['application/pdf'];
+    const FILE_SIZE = 10 * 1024 * 1024;
+
     // //Context
     // const context = useContext(store);
     // const { state, dispatch } = context;
@@ -43,6 +55,38 @@ function Component({ data }) {
     //           alert(error);
     //     }
     //   }
+
+    const sendMail = async (data) => {
+
+        let dataObj = {
+        email: "info@incans.com",
+        subject: `New Submission: ${data.fullName} - ${data.email} - ${data.contactReason}`,
+        message: data.message,
+        name: data.fullName,
+        attachmentName: attachmentName ? attachmentName.name : null,
+        attachmentBlob: attachmentBlob
+        }
+
+        console.log(dataObj)
+
+        // try {
+        // await fetch("/api/contact", {
+        //     "method": "POST",
+        //     "headers": { "content-type": "application/json" },
+        //     "body": JSON.stringify(dataObj)
+        // })
+
+        // setFormHasValidated(true);
+
+        // window.scrollTo(0,0);
+
+        //         //if sucess do whatever you like, i.e toast notification
+        // // setTimeout(() => reset(), 2000);
+        // } catch (error) {
+        //     // toast error message. whatever you wish 
+        // }
+
+    }    
 
     let fields = data.fields;
 
@@ -105,9 +149,12 @@ function Component({ data }) {
             confirmation: Yup.boolean()
             .required("Required")
             .oneOf([true], "Must fill in."),
-            uploadOne: "",
-            uploadTwo: "",
-            uploadThree: "",
+            uploadOne: Yup.mixed().test('fileSize', "File Size is too large",
+            value => value !== undefined ? value.size <= FILE_SIZE : true),
+            uploadTwo: Yup.mixed().test('fileSize', "File Size is too large",
+            value => value !== undefined ? value.size <= FILE_SIZE : true),
+            uploadThree: Yup.mixed().test('fileSize', "File Size is too large",
+            value => value !== undefined ? value.size <= FILE_SIZE : true)
             // checkboxOne: Yup.boolean()
             // .required("Required")
             // .oneOf([true], "You must accept the terms and conditions."),
@@ -218,7 +265,7 @@ function Component({ data }) {
                 {`${fields[16].label}*:`}
                 </MyCheckbox>                 
                 <Title>{data.subtitleTwo}</Title>
-                <MyTextInput
+                {/* <MyTextInput
                 label={`${fields[18].label}:`}
                 name="uploadOne"
                 type="text"
@@ -235,7 +282,28 @@ function Component({ data }) {
                 name="uploadThree"
                 type="text"
                 placeholder={''}
-                />                                                                                                                                                                                                                                                                                   
+                /> */}
+                <MyUpload
+                    label="File"
+                    type="file"
+                    name="uploadOne"
+                    attachmentName={(attachmentName) => setAttachmentNameOne(attachmentName)}
+                    attachmentBlob={(attachmentBlob) => setAttachmentBlobOne(attachmentBlob)}
+                />
+                <MyUpload
+                    label="File"
+                    type="file"
+                    name="uploadTwo"
+                    attachmentName={(attachmentName) => setAttachmentNameTwo(attachmentName)}
+                    attachmentBlob={(attachmentBlob) => setAttachmentBlobTwo(attachmentBlob)}
+                />  
+                <MyUpload
+                    label="File"
+                    type="file"
+                    name="uploadThree"
+                    attachmentName={(attachmentName) => setAttachmentNameThree(attachmentName)}
+                    attachmentBlob={(attachmentBlob) => setAttachmentBlobThree(attachmentBlob)}
+                />                                                                                                                                                                                                                                                                                                                                    
                 {/* <MyTextArea
                 label={''}
                 name="information"
