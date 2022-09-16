@@ -18,7 +18,7 @@ function Component({ data }) {
     let [attachmentBlobThree, setAttachmentBlobThree] = useState(null)
 
     const SUPPORTED_FORMATS = ['application/pdf'];
-    const FILE_SIZE = 10 * 1024 * 1024;
+    const FILE_SIZE = 8 * 1024 * 1024;
 
     // //Context
     // const context = useContext(store);
@@ -59,7 +59,7 @@ function Component({ data }) {
     const sendMail = async (data) => {
 
         let dataObj = {
-        email: "info@incans.com",
+        email: "swisspaa@gmail.com",
         subject: `New Submission: ${data.fullName} - ${data.email} - ${data.contactReason}`,
         message: data.message,
         name: data.fullName,
@@ -67,10 +67,8 @@ function Component({ data }) {
         attachmentBlob: attachmentBlob
         }
 
-        console.log(dataObj)
-
         // try {
-        // await fetch("/api/contact", {
+        // await fetch("/api/email", {
         //     "method": "POST",
         //     "headers": { "content-type": "application/json" },
         //     "body": JSON.stringify(dataObj)
@@ -284,21 +282,21 @@ function Component({ data }) {
                 placeholder={''}
                 /> */}
                 <MyUpload
-                    label="File"
+                    label={fields[18].label}
                     type="file"
                     name="uploadOne"
                     attachmentName={(attachmentName) => setAttachmentNameOne(attachmentName)}
                     attachmentBlob={(attachmentBlob) => setAttachmentBlobOne(attachmentBlob)}
                 />
                 <MyUpload
-                    label="File"
+                    label={fields[19].label}
                     type="file"
                     name="uploadTwo"
                     attachmentName={(attachmentName) => setAttachmentNameTwo(attachmentName)}
                     attachmentBlob={(attachmentBlob) => setAttachmentBlobTwo(attachmentBlob)}
                 />  
                 <MyUpload
-                    label="File"
+                    label={fields[20].label}
                     type="file"
                     name="uploadThree"
                     attachmentName={(attachmentName) => setAttachmentNameThree(attachmentName)}

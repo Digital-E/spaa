@@ -12,7 +12,7 @@ import { getClient, overlayDrafts } from '../../lib/sanity.server'
 // Components
 import Overlay from "../../components/home/background-dots"
 import Carousel from "../../components/home/carousel"
-import DrawingTool from "../../components/home/drawing-tool"
+// import DrawingTool from "../../components/home/drawing-tool"
 
 export default function Index({ data = {}, preview }) {
   // const heroPost = allPosts[0]
@@ -50,7 +50,7 @@ export default function Index({ data = {}, preview }) {
         </Head>
         <Overlay />
         <Carousel />
-        <DrawingTool />
+        {/* <DrawingTool /> */}
         {/* <Circles data={data?.homeData?.circles} />
         <Calendar data={data.news} />
         <EventList data={allEvents} title={data?.homeData?.newsTitle} videoData={data?.homeData}/> */}

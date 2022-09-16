@@ -13,9 +13,9 @@ import { getClient } from '../../lib/sanity.server'
 import Body from "../../components/body"
 
 const Wrapper = styled.div`
-    padding: 0 20px;
+    padding: 0 0px;
     width: 70%;
-    margin: 0 auto 100px auto;
+    margin: 0 0 100px 0;
 
     @media(max-width: 1200px) {
         width: 100%;
@@ -52,7 +52,7 @@ export default function Post({ data = {}, preview }) {
                   content={data.content}
                 />
               </Head>
-              <MediaHeader data={data} />
+              {/* <MediaHeader data={data} /> */}
               <Wrapper>
                 <Body content={data.text} />
               </Wrapper>

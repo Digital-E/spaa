@@ -13,6 +13,8 @@ import splitSlug from "../../../../lib/splitSlug"
 
 import Body from '../../../../components/body'
 
+import MediaGrid from '../../../../components/archive/media-grid'
+
 const Year = styled.div`
   text-align: center;
 
@@ -68,6 +70,9 @@ const RowTwo = styled.div`
   }
 `;
 
+const RowThree = styled.div``
+
+
 
 
 export default function Component({ data = {}, preview }) {
@@ -106,6 +111,9 @@ export default function Component({ data = {}, preview }) {
                 <div><Body content={data.data.textFieldFour} /></div>
                 <div><Body content={data.data.textFieldFive} /></div>
               </RowTwo>
+              <RowThree>
+                <MediaGrid data={data.data.images} />
+              </RowThree>
           </>
         )}
     </Layout>

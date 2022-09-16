@@ -94,11 +94,12 @@ a:hover, button:hover {
 
 .button {
     display: inline-block;
-    border: 1px solid black;
+    /* border: 1px solid black;
     border-radius: 999px;
     padding: 0.5em 0.7em;
-    height: fit-content;
+    height: fit-content; */
     line-height: 1;
+    cursor: pointer;
 }
 
 * { 

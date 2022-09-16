@@ -11,7 +11,7 @@ const Image = ({ data, hasCaption }) => {
 
     const imageProps = useNextSanityImage(
         configuredSanityClient,
-        data
+        data.asset
     );
 
     return (
