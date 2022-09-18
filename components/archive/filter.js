@@ -61,10 +61,11 @@ let Container = styled.div`
         background-color: #70706f !important;
     }
 
-    @media(max-width: 768px) {
+    @media(max-width: 989px) {
         position: fixed;
         width: 100%;
-        top: 55px;
+        top: 90px;
+        left: 0;
 
         .season-filters > div {
             flex-wrap: wrap;
@@ -107,7 +108,7 @@ export default function Component ({ data }) {
           }
         }
     
-        if(window.innerWidth > 768) {
+        if(window.innerWidth > 989) {
             let headerHeight = document.querySelector("header").offsetHeight;
 
             scrollTriggerInstance = ScrollTrigger.create({
@@ -131,7 +132,7 @@ export default function Component ({ data }) {
 
     useEffect(() => {
 
-        if(window.innerWidth > 768) {
+        if(window.innerWidth > 989) {
             setTimeout(() => {
                 init();
             }, 500)

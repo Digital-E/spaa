@@ -20,6 +20,10 @@ let Container = styled.header`
     z-index: 2;
   }
 
+  > div:nth-child(1) > a {
+    color: black;
+  }
+
 
   .p {
    margin: 0;

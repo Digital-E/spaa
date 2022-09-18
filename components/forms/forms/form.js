@@ -168,91 +168,91 @@ function Component({ data }) {
             >
             <Form>  
                 <MyTextInput
-                label={`${fields[0].label}*:`}
+                label={`${fields[0]?.label}*:`}
                 name="name"
                 type="text"
                 placeholder={''}
                 />              
                 <MyTextInput
-                label={`${fields[1].label}*:`}
+                label={`${fields[1]?.label}*:`}
                 name="firstName"
                 type="text"
                 placeholder={''}
                 />                                    
                 <MyTextInput
-                label={`${fields[2].label}*:`}
+                label={`${fields[2]?.label}*:`}
                 name="dob"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[3].label}*:`}
+                label={`${fields[3]?.label}*:`}
                 name="nationality"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[4].label}*:`}
+                label={`${fields[4]?.label}*:`}
                 name="residentOfSwitzerlandSince"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[5].label}*:`}
+                label={`${fields[5]?.label}*:`}
                 name="streetNumber"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[6].label}*:`}
+                label={`${fields[6]?.label}*:`}
                 name="postalCodeTown"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[7].label}*:`}
+                label={`${fields[7]?.label}*:`}
                 name="phoneNumber"
                 type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${fields[8].label}*:`}
+                label={`${fields[8]?.label}*:`}
                 name="email"
                 type="email"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[9].label}*:`}
+                label={`${fields[9]?.label}*:`}
                 name="bankAccount"
                 type="text"
                 placeholder={''}
                 /> 
                 <MyRadio
-                label={`${fields[10].label}*:`}
+                label={`${fields[10]?.label}*:`}
                 name="showing"
                 type="radio"
-                list={[fields[11].label, fields[12].label]}
+                list={[fields[11]?.label, fields[12]?.label]}
                 />
                 <MyTextInput
-                label={`${fields[13].label}*:`}
+                label={`${fields[13]?.label}*:`}
                 name="authorship"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[14].label}*:`}
+                label={`${fields[14]?.label}*:`}
                 name="otherParticipants"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[15].label}*:`}
+                label={`${fields[15]?.label}*:`}
                 name="websitesAndLinks"
                 type="text"
                 placeholder={''}
                 />
                 {/* <MyTextInput
-                label={`${fields[16].label}*:`}
+                label={`${fields[16]?.label}*:`}
                 name="confirmation"
                 type="text"
                 placeholder={''}
@@ -260,43 +260,43 @@ function Component({ data }) {
                 <MyCheckbox
                 name="confirmation"
                 >
-                {`${fields[16].label}*:`}
+                {`${fields[16]?.label}*:`}
                 </MyCheckbox>                 
                 <Title>{data.subtitleTwo}</Title>
                 {/* <MyTextInput
-                label={`${fields[18].label}:`}
+                label={`${fields[18]?.label}:`}
                 name="uploadOne"
                 type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${fields[19].label}:`}
+                label={`${fields[19]?.label}:`}
                 name="uploadTwo"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[20].label}:`}
+                label={`${fields[20]?.label}:`}
                 name="uploadThree"
                 type="text"
                 placeholder={''}
                 /> */}
                 <MyUpload
-                    label={fields[18].label}
+                    label={fields[18]?.label}
                     type="file"
                     name="uploadOne"
                     attachmentName={(attachmentName) => setAttachmentNameOne(attachmentName)}
                     attachmentBlob={(attachmentBlob) => setAttachmentBlobOne(attachmentBlob)}
                 />
                 <MyUpload
-                    label={fields[19].label}
+                    label={fields[19]?.label}
                     type="file"
                     name="uploadTwo"
                     attachmentName={(attachmentName) => setAttachmentNameTwo(attachmentName)}
                     attachmentBlob={(attachmentBlob) => setAttachmentBlobTwo(attachmentBlob)}
                 />  
                 <MyUpload
-                    label={fields[20].label}
+                    label={fields[20]?.label}
                     type="file"
                     name="uploadThree"
                     attachmentName={(attachmentName) => setAttachmentNameThree(attachmentName)}

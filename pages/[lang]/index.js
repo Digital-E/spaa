@@ -5,7 +5,6 @@ import ErrorPage from 'next/error'
 import Layout from '../../components/layout'
 import { SITE_NAME } from '../../lib/constants'
 import { indexQuery, indexEventsQuery, homeQuery, menuQuery, footerQuery } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 
 
@@ -50,10 +49,7 @@ export default function Index({ data = {}, preview }) {
         </Head>
         <Overlay />
         <Carousel />
-        {/* <DrawingTool /> */}
-        {/* <Circles data={data?.homeData?.circles} />
-        <Calendar data={data.news} />
-        <EventList data={allEvents} title={data?.homeData?.newsTitle} videoData={data?.homeData}/> */}
+        <DrawingTool />
       </Layout>
     </>
   )

@@ -13,6 +13,8 @@ import splitSlug from "../../../../lib/splitSlug"
 
 import Body from '../../../../components/body'
 
+import MediaGrid from '../../../../components/archive/media-grid'
+
 const Title = styled.div`
 
   span {
@@ -88,6 +90,7 @@ export default function Component({ data = {}, preview }) {
                   <div><Body content={data.data.textFieldTwo} /></div>
                 </ColTwo>
               </Cols>
+              <MediaGrid data={data.data.images} />
           </>
         )}
     </Layout>

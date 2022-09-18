@@ -11,7 +11,6 @@ import styled from 'styled-components'
 
 import BackgroundDots from '../../components/home/background-dots'
 import Form from '../../components/forms/index.js'
-import Body from "../../components/body"
 
 const Container = styled.div`
     position: relative;

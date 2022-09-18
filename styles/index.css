@@ -102,17 +102,36 @@ a:hover, button:hover {
     cursor: pointer;
 }
 
-* { 
-    font-feature-settings: 'ss02';
-}
+:root {
+    --plyr-range-thumb-background: transparent;
+    /* --plyr-video-progress-buffered-background: transparent; */
+    --plyr-color-main: transparent;
+    --plyr-range-thumb-shadow: transparent;
+    --plyr-range-fill-background: white;
+    --plyr-range-track-height: 2px;
+    --plyr-tooltip-radius: 0;
+    --plyr-tooltip-background: transparent;
+    --plyr-tooltip-shadow: transparent;
+    --plyr-tooltip-color: white;
+    --plyr-video-controls-background: transparent;
+  }
+
+  .plyr__volume {
+    width: auto !important;
+    min-width: auto !important;
+  }
+  
+  .plyr__tooltip {
+    backdrop-filter: blur(100px);
+  }
 
 
 .plyr--full-ui input[type=range] {
-    color: white !important;
+    color: black !important;
 }
 
 .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
-    background: #70706f !important;
+    background: black !important;
 }
 
 .CookieConsent {
