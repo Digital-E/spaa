@@ -15,13 +15,13 @@ if (typeof window !== "undefined") {
 const Container = styled.div`
     position: fixed;
     z-index: 0;
-    top: 84px;
-    height: calc(100vh - 84px);
+    top: 0;
+    height: 100vh;
     width: 100vw;
     left: 0;
 
     .flickity-viewport {
-        height: calc(100vh - 84px);
+        height: 100vh;
         width: 100vw;
         max-width: 1800px;
         overflow: visible !important;
@@ -45,12 +45,13 @@ const Slide = styled.div`
 
     * {
         font-size: 11vw !important;
+        line-height: 1.2;
     }
 
     @media(min-width: 1800px) {
         * {
-        font-size: 198px !important;
-    } 
+            font-size: 198px !important;
+        } 
     }
 `;
 
