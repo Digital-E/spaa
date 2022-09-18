@@ -21,11 +21,19 @@ const Title = styled.p`
     width: fit-content;
 `
 
+const Download = styled.div`
+    margin: 30px auto 50px auto;
+    width: fit-content;
+`
+
+
 
 const Component = ({ data }) => {
 
+
   return (
     <Container>
+      <Download><p>{data.downloadLabelOne} <a href={data.download} target="_blank">{data.downloadLabelTwo}</a></p></Download>
       <Title>{data.subtitleOne}</Title>
       <Form data={data}/>
     </Container>

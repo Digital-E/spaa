@@ -63,8 +63,12 @@ function Component({ data }) {
         subject: `New Submission: ${data.fullName} - ${data.email} - ${data.contactReason}`,
         message: data.message,
         name: data.fullName,
-        attachmentName: attachmentName ? attachmentName.name : null,
-        attachmentBlob: attachmentBlob
+        attachmentNameOne: attachmentNameOne ? attachmentNameOne.name : null,
+        attachmentBlobOne: attachmentBlobOne,
+        attachmentNameTwo: attachmentNameTwo ? attachmentNameTwo.name : null,
+        attachmentBlobTwo: attachmentBlobTwo,
+        attachmentNameThree: attachmentNameThree ? attachmentNameThree.name : null,
+        attachmentBlobThree: attachmentBlobThree
         }
 
         // try {
@@ -87,6 +91,8 @@ function Component({ data }) {
     }    
 
     let fields = data.fields;
+
+    if(fields === null) return null;
 
     return (
         <Container>

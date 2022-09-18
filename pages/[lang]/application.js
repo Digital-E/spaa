@@ -59,7 +59,7 @@ export default function About({ data = {}, preview }) {
         <Title><span>{data?.applicationData?.title}</span></Title>
         <Container>
           <BackgroundDots />
-          <Form data={data?.applicationData}/>
+          <Form data={data?.applicationData} />
           {/* <Body content={data?.applicationData?.textcolumnone} /> */}
         </Container>
       </Layout>

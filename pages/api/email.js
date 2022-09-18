@@ -16,7 +16,11 @@ export const config = {
 export default async (req, res) => {
 
  
-  const { email, subject, message, name, attachmentName, attachmentBlob } = req.body
+  const { email, subject, message, name, 
+    attachmentNameOne, attachmentBlobOne,
+    attachmentNameTwo, attachmentBlobTwo,
+    attachmentNameThree, attachmentBlobThree
+    } = req.body
 
 
   // let msg = {
@@ -29,31 +33,39 @@ export default async (req, res) => {
 
 
   let msg = {
-    // to: [{email: 'incansuk@gmail.com', name: 'Incans UK'}],
-    to: [{email: 'info@incans.com', name: 'Incans UK'}],
-    from: {email: 'incansuk@gmail.com', name:'Incans UK'},
-    // cc: [{email: 'incansuk@gmail.com', name: 'Incans UK'}],
+    to: [{email: 'swisspaa@gmail.com', name: 'Swiss Perfomance Art Award'}],
+    from: {email: 'incansuk@gmail.com', name:'Swiss Perfomance Art Award'},
     content: [{type:'text/plain', value: message.length > 0 ? message : " "}],
     subject: subject,
-    // text: message,  
   };
 
 
-  if(attachmentName !== null && attachmentBlob !== null) {
+  if(attachmentOneName !== null && attachmentOneBlob !== null) {
 
     msg = {
-      // to: [{email: 'incansuk@gmail.com', name: 'Incans UK'}],
-      to: [{email: 'info@incans.com', name: 'Incans UK'}],
-      from: {email: 'incansuk@gmail.com', name:'Incans UK'},
-      // cc: [{email: 'incansuk@gmail.com', name: 'Incans UK'}],
+      to: [{email: 'swisspaa@gmail.com', name: 'Swiss Perfomance Art Award'}],
+      from: {email: 'incansuk@gmail.com', name:'Swiss Perfomance Art Award'},
       content: [{type:'text/plain', value: message}],
       subject: subject,
-      // text: message,
         attachments: [
           {
             // content: attachment,
-            content: attachmentBlob,
-            filename: attachmentName,
+            content: attachmentBlobOne,
+            filename: attachmentNameOne,
+            // type: "application/pdf",
+            disposition: "attachment"
+          },
+          {
+            // content: attachment,
+            content: attachmentBlobTwo,
+            filename: attachmentNameTwo,
+            // type: "application/pdf",
+            disposition: "attachment"
+          },
+          {
+            // content: attachment,
+            content: attachmentBlobThree,
+            filename: attachmentNameThree,
             // type: "application/pdf",
             disposition: "attachment"
           }
