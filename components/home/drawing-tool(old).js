@@ -45,11 +45,11 @@ export default ({ data }) => {
     },
     {
       color: '#4EAA84',
-      width: 10,
+      width: 20,
     },
     {
       color: '#837652',
-      width: 5
+      width: 30
     }
   ]
 
@@ -73,11 +73,9 @@ export default ({ data }) => {
           fabric.Object.prototype.transparentCorners = false;
 
 
-          if(window.innerWidth > 990) {
-            canvas.on('mouse:move', function (event) {
-              this._onMouseDownInDrawingMode(event);
-          });
-          }
+          // canvas.on('mouse:move', function (event) {
+          //     this._onMouseDownInDrawingMode(event);
+          // });
 
 
         
@@ -267,6 +265,97 @@ export default ({ data }) => {
   }, []);
 
   useEffect(() => {
+    if(brushIndex === 0) {
+      canvas.freeDrawingBrush = new fabric['PencilBrush'](canvas);
+    } else if (brushIndex === 1) {
+      canvas.freeDrawingBrush = new fabric['SprayBrush'](canvas);
+    } else if (brushIndex === 2) {
+      canvas.freeDrawingBrush = new fabric['PatternBrush'](canvas);
+
+              var brush = canvas.freeDrawingBrush;
+              brush.color = colors[brushIndex].color;
+              if (brush.getPatternSrc) {
+                brush.source = brush.getPatternSrc.call(brush);
+              }
+              // brush.width = 30
+              // brush.shadow = new fabric.Shadow({
+              //   blur:30,
+              //   offsetX: 0,
+              //   offsetY: 0,
+              //   affectStroke: true,
+              //   color: colors[brushIndex].color,
+              // });
+    } else if (brushIndex === 3) {
+      var vLinePatternBrush = new fabric.PatternBrush(canvas);
+      
+      vLinePatternBrush.getPatternSrc = function() {
+  
+        var patternCanvas = fabric.document.createElement('canvas');
+        patternCanvas.width = patternCanvas.height = 10;
+        var ctx = patternCanvas.getContext('2d');
+  
+        ctx.strokeStyle = colors[brushIndex].color;
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 5);
+        ctx.lineTo(10, 5);
+        ctx.closePath();
+        ctx.stroke();
+  
+        return patternCanvas;
+      };
+
+      canvas.freeDrawingBrush = vLinePatternBrush;
+
+      var brush = canvas.freeDrawingBrush;
+
+      brush.color = colors[brushIndex].color;
+      if (brush.getPatternSrc) {
+        brush.source = brush.getPatternSrc.call(brush);
+      }
+      // brush.width = 30
+      // brush.shadow = new fabric.Shadow({
+      //   blur:30,
+      //   offsetX: 0,
+      //   offsetY: 0,
+      //   affectStroke: true,
+      //   color: colors[brushIndex].color,
+      // });
+
+    } else if (brushIndex === 4) {
+      var squarePatternBrush = new fabric.PatternBrush(canvas);
+      squarePatternBrush.getPatternSrc = function() {
+  
+        var squareWidth = 10, squareDistance = 2;
+  
+        var patternCanvas = fabric.document.createElement('canvas');
+        patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
+        var ctx = patternCanvas.getContext('2d');
+  
+        ctx.fillStyle = this.color;
+        ctx.fillRect(0, 0, squareWidth, squareWidth);
+  
+        return patternCanvas;
+      };
+      
+      canvas.freeDrawingBrush = squarePatternBrush;
+
+      var brush = canvas.freeDrawingBrush;
+
+      brush.color = colors[brushIndex].color;
+      if (brush.getPatternSrc) {
+        brush.source = brush.getPatternSrc.call(brush);
+      }
+      // brush.width = 30
+      // brush.shadow = new fabric.Shadow({
+      //   blur:30,
+      //   offsetX: 0,
+      //   offsetY: 0,
+      //   affectStroke: true,
+      //   color: colors[brushIndex].color,
+      // });
+    }
+
     var brush = canvas.freeDrawingBrush;
     brush.color = colors[brushIndex].color;
     canvas.freeDrawingBrush.width = colors[brushIndex].width;
