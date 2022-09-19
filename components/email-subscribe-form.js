@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Formik, Form, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -204,10 +205,26 @@ const MySelect = ({ label, ...props }) => {
 // And now we can use these
 const SignupForm = ({ data }) => {
 
+  let newsletterFormRef = useRef();
+
   const addEmailToList = async (values) => {
     let dataObj = {
-      email: values.email,
+      name: values.name,
+      email: values.email
     }
+
+    setTimeout(() => {
+
+    document.querySelectorAll(".text-input").forEach(item => {
+      item.value="";
+      // item.placeholder="Thanks for subscribing!";
+    })
+
+    // document.querySelector("#submit-button").innerText = "✓"
+    newsletterFormRef.current.children[0].children[2].innerText = "✓"
+  }, 1000)
+
+    return
 
   try {
       const res = await fetch("/api/subscribe", {
@@ -237,7 +254,7 @@ const SignupForm = ({ data }) => {
   }
 
   return (
-    <Container>
+    <Container ref={newsletterFormRef}>
       <Formik
         initialValues={{
           name: "",

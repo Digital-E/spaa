@@ -59,10 +59,10 @@ function Component({ data }) {
     const sendMail = async (data) => {
 
         let dataObj = {
-        email: "swisspaa@gmail.com",
-        subject: `New Submission: ${data.fullName} - ${data.email} - ${data.contactReason}`,
+        email: data.email,
+        subject: `New Submission: ${data.firstName} ${data.name} - ${data.email}`,
         message: data.message,
-        name: data.fullName,
+        name: `${data.firstName} ${data.name}`,
         attachmentNameOne: attachmentNameOne ? attachmentNameOne.name : null,
         attachmentBlobOne: attachmentBlobOne,
         attachmentNameTwo: attachmentNameTwo ? attachmentNameTwo.name : null,
@@ -71,22 +71,23 @@ function Component({ data }) {
         attachmentBlobThree: attachmentBlobThree
         }
 
-        // try {
-        // await fetch("/api/email", {
-        //     "method": "POST",
-        //     "headers": { "content-type": "application/json" },
-        //     "body": JSON.stringify(dataObj)
-        // })
+        try {
+        await fetch("/api/email", {
+            "method": "POST",
+            "headers": { "content-type": "application/json" },
+            "body": JSON.stringify(dataObj)
+        })
+
+        alert('done')
 
         // setFormHasValidated(true);
 
         // window.scrollTo(0,0);
 
-        //         //if sucess do whatever you like, i.e toast notification
-        // // setTimeout(() => reset(), 2000);
-        // } catch (error) {
-        //     // toast error message. whatever you wish 
-        // }
+
+        } catch (error) {
+
+        }
 
     }    
 
@@ -165,7 +166,8 @@ function Component({ data }) {
             // checkboxTwo: Yup.boolean()
             })}
             onSubmit={async (values, { setSubmitting }) => {
-            console.log(values)
+            // console.log(values)
+            sendMail(values)
             // await new Promise(r => setTimeout(r, 500));
             // setSubmitting(false);
             // addtextToList(values);

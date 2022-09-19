@@ -33,18 +33,21 @@ export default async (req, res) => {
 
 
   let msg = {
-    to: [{email: 'swisspaa@gmail.com', name: 'Swiss Perfomance Art Award'}],
-    from: {email: 'incansuk@gmail.com', name:'Swiss Perfomance Art Award'},
-    content: [{type:'text/plain', value: message.length > 0 ? message : " "}],
+    // contact@performanceartaward.ch
+    to: [{email: 'samabassett@gmail.com', name: 'Swiss Perfomance Art Award'}],
+    from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+    // message.length > 0 ?
+    content: [{type:'text/plain', value: message !== undefined ? message : " "}],
     subject: subject,
   };
 
 
-  if(attachmentOneName !== null && attachmentOneBlob !== null) {
+  if(attachmentNameOne !== null && attachmentBlobOne !== null) {
 
     msg = {
-      to: [{email: 'swisspaa@gmail.com', name: 'Swiss Perfomance Art Award'}],
-      from: {email: 'incansuk@gmail.com', name:'Swiss Perfomance Art Award'},
+      // contact@performanceartaward.ch
+      to: [{email: 'samabassett@gmail.com', name: 'Swiss Perfomance Art Award'}],
+      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
       content: [{type:'text/plain', value: message}],
       subject: subject,
         attachments: [

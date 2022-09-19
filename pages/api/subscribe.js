@@ -1,38 +1,28 @@
-// const { INFOMANIAK_USERNAME } = process.env;
-// const { INFOMANIAK_PASSWORD } = process.env;
+const { MAILCHIMP_AUTH: secret } = process.env;
 
-let INFOMANIAK_USERNAME="2vGEYrdBW5JFmdF/TZKHbLnXWPFlqpUUMH4CM/GUFDaQ4PWJX/kkCKs6IIa1f0k4YodgqBfZ5ZxwH2E7"
-let INFOMANIAK_PASSWORD="$2y$10$SbyXyKxi6QELUkDJ8kyrfesO/DW5u5VITNzfMt/2NHNX8MUACeJhG"
 
 export default async (req, res) => {
-  let listId = "127003";
-
-  console.log(INFOMANIAK_USERNAME, INFOMANIAK_PASSWORD)
-  
-  const hash = Buffer.from(`${INFOMANIAK_USERNAME}:${INFOMANIAK_PASSWORD}`).toString("base64")
+  let audienceId = "";
 
   try {
     const response = await fetch(
-      `https://newsletter.infomaniak.com/api/v1/public/mailinglist/${listId}/importcontact`,
+      `https://us13.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+      // `https://us13.api.mailchimp.com/3.0/lists/${listId}/segments/${segmentId}/members`,
       {
         method: "post",
         headers: {
-          "Authorization": `Basic ${hash}`,
           "Content-Type": "application/json",
-        //   Authorization: secret, // REFER TO THE VARIABLE HERE
+          Authorization: `api_key ${secret}`, // REFER TO THE VARIABLE HERE
         },
         body: JSON.stringify({
-          contacts: [
-              {
-                  "email": req.body.email,
-              }
-          ]
+          FNAME: req.body.name,
+          email_address: req.body.email,
+          status: "subscribed",
         }),
       }
     )
     .then((response) => response.json())
     .then(data => {
-        console.log(data)
         res.status(200).json(data);
     })
     .catch(err => {

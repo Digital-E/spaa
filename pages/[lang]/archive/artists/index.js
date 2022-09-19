@@ -15,32 +15,44 @@ import Filter from "../../../../components/archive/filter"
 const Container = styled.div`
 `
 
-const Years = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+const List = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media(max-width: 989px) {
+    flex-direction: column;
+  }
 `
 
-const Year = styled.div`
-    display: flex;
-    justify-content: flex-start;
+const ListItem = styled.div``
 
-    :nth-child(3n + 1) {
-        flex-basis: 35%;
-    }
+const Letter = styled.div`
+  p {
+    font-size: 12vw !important;
+    line-height: 1;
+  }
 
-    :nth-child(3n + 2) {
-        flex-basis: 35%;
-    }
-
-    p {
-        font-size: 12vw !important;
-        line-height: 1;
-        // margin: 0;
-    }
+  margin-bottom: 30px;
 `
 
+const ListElement = styled.div`
+  margin-bottom: 50px;
+`
 
-export default function YearPage({ data = {}, preview }) {
+let currOrderLetter = "";
+
+const Col = styled.div`
+  :nth-child(1), :nth-child(2) {
+    flex-basis: 35%;
+  }
+`;
+
+
+
+export default function ArtistPage({ data = {}, preview }) {
+
+  let [list, setList] = useState([])
+
 
   const router = useRouter()
 
@@ -49,6 +61,93 @@ export default function YearPage({ data = {}, preview }) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
+
+  useEffect(() => {
+
+    if(data?.artistsData?.list === null) return
+
+    let sort = data?.artistsData?.list?.sort((a, b) => {
+      let aName = ""
+      let bName = ""
+
+      if(a.name.split(" ")[1] !== undefined) {
+        aName = a.name.split(" ")[1]
+      } else {
+        aName = a.name
+      }
+
+      if(b.name.split(" ")[1] !== undefined) {
+        bName = b.name.split(" ")[1]
+      } else {
+        bName = b.name
+      }
+
+      return aName.localeCompare(bName)
+    })
+
+    let listWithOrderLetter = sort.map(item => {
+      let newItem = item
+
+      if(item.name.split(" ")[1] !== undefined) {
+        newItem.orderLetter = item.name.split(" ")[1].split("")[0]
+      } else {
+        newItem.orderLetter = item.name.split("")[0]
+      }
+
+      return newItem
+    })
+
+    currOrderLetter = listWithOrderLetter[0].orderLetter
+
+    let listSortedByLetter = [];
+
+    let letter = {
+      letter: '',
+      artists: []
+    }
+
+    listWithOrderLetter.forEach(item => {
+
+      if(currOrderLetter.toLowerCase() === item.orderLetter.toLowerCase()) {
+        letter.letter = item.orderLetter
+        letter.artists.push(item)
+      } else {
+        currOrderLetter = item.orderLetter
+        listSortedByLetter.push(letter)
+
+        letter = {
+          letter: '',
+          artists: [],
+        }
+
+        letter.letter = item.orderLetter
+        letter.artists.push(item)
+      }
+    })
+
+    
+    let listSortedByCol = [];
+
+    let listCol = [];
+
+    let elemsPerCol = Math.ceil(listSortedByLetter.length / 3)
+
+    listSortedByLetter.forEach((item, index) => {
+      listCol.push(item)
+
+      if(index % elemsPerCol === elemsPerCol - 1) {
+        listSortedByCol.push(listCol)
+        listCol = [];
+      }
+
+      if(index === listSortedByLetter.length - 1) {
+        listSortedByCol.push(listCol)
+      }
+    })
+
+    setList(listSortedByCol)
+
+  }, []);
 
   return (
     <>
@@ -62,9 +161,18 @@ export default function YearPage({ data = {}, preview }) {
         </Head>
         <Container>
             <Filter />
-            {/* <Years>
-                {data.artistsData.slices.map(item => <Year><Link href={`/${router.query.lang}/archive/year/${item}`}><p>{item}</p></Link></Year>)}
-            </Years> */}
+            <List>
+              {list?.map(item =>
+                <Col>
+                  {item?.map(item => 
+                      <ListElement>
+                        <Letter><p>{item.letter}</p></Letter>
+                        {item.artists?.map(item => <ListItem><Link href={item.url}><p>{item.name}</p></Link></ListItem>)}
+                      </ListElement>
+                  )}
+                </Col>
+              )}
+            </List>
         </Container>
       </Layout>
     </>
