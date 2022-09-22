@@ -50,7 +50,7 @@ export default function Index({ data = {}, preview }) {
         </Head>
         <Overlay />
         <Carousel />
-        <DrawingTool />
+        <DrawingTool preview={preview} />
       </Layout>
     </>
   )
