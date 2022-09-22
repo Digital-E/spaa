@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Layout from '../../../../components/layout'
 import { SITE_NAME } from '../../../../lib/constants'
-import { artistsQuery, menuQuery, footerQuery } from '../../../../lib/queries'
+import { artistsQuery, allArtistsQuery, menuQuery, footerQuery } from '../../../../lib/queries'
 import { getClient } from '../../../../lib/sanity.server'
 import styled from 'styled-components'
 
@@ -53,10 +53,11 @@ export default function ArtistPage({ data = {}, preview }) {
 
   let [list, setList] = useState([])
 
-
   const router = useRouter()
 
   const slug = data?.artistsData?.slug
+
+  console.log(data.allArtistsData)
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
@@ -64,34 +65,35 @@ export default function ArtistPage({ data = {}, preview }) {
 
   useEffect(() => {
 
-    if(data?.artistsData?.list === null) return
+    if(data?.allArtistsData?.length === 0) return
 
-    let sort = data?.artistsData?.list?.sort((a, b) => {
+    let sort = data?.allArtistsData?.sort((a, b) => {
       let aName = ""
       let bName = ""
 
-      if(a.name.split(" ")[1] !== undefined) {
-        aName = a.name.split(" ")[1]
+      if(a.title.split(" ")[1] !== undefined) {
+        aName = a.title.split(" ")[1]
       } else {
-        aName = a.name
+        aName = a.title
       }
 
-      if(b.name.split(" ")[1] !== undefined) {
-        bName = b.name.split(" ")[1]
+      if(b.title.split(" ")[1] !== undefined) {
+        bName = b.title.split(" ")[1]
       } else {
-        bName = b.name
+        bName = b.title
       }
 
       return aName.localeCompare(bName)
     })
 
+
     let listWithOrderLetter = sort.map(item => {
       let newItem = item
 
-      if(item.name.split(" ")[1] !== undefined) {
-        newItem.orderLetter = item.name.split(" ")[1].split("")[0]
+      if(item.title.split(" ")[1] !== undefined) {
+        newItem.orderLetter = item.title.split(" ")[1].split("")[0]
       } else {
-        newItem.orderLetter = item.name.split("")[0]
+        newItem.orderLetter = item.title.split("")[0]
       }
 
       return newItem
@@ -106,11 +108,12 @@ export default function ArtistPage({ data = {}, preview }) {
       artists: []
     }
 
-    listWithOrderLetter.forEach(item => {
+    listWithOrderLetter.forEach((item, index) => {
 
       if(currOrderLetter.toLowerCase() === item.orderLetter.toLowerCase()) {
         letter.letter = item.orderLetter
         letter.artists.push(item)
+
       } else {
         currOrderLetter = item.orderLetter
         listSortedByLetter.push(letter)
@@ -122,6 +125,10 @@ export default function ArtistPage({ data = {}, preview }) {
 
         letter.letter = item.orderLetter
         letter.artists.push(item)
+      }
+
+      if(index === listWithOrderLetter.length - 1) {
+        listSortedByLetter.push(letter)
       }
     })
 
@@ -167,7 +174,7 @@ export default function ArtistPage({ data = {}, preview }) {
                   {item?.map(item => 
                       <ListElement>
                         <Letter><p>{item.letter}</p></Letter>
-                        {item.artists?.map(item => <ListItem><Link href={item.url}><p>{item.name}</p></Link></ListItem>)}
+                        {item.artists?.map(item => <ListItem><Link href={item.slug}><p>{item.title}</p></Link></ListItem>)}
                       </ListElement>
                   )}
                 </Col>
@@ -187,6 +194,10 @@ export async function getStaticProps({ preview = false, params }) {
     slug: slug,
   })
 
+  const allArtistsData = await getClient(preview).fetch(allArtistsQuery, {
+    lang: params.lang,
+  })
+
   // Get Menu And Footer
 
   const menuData = await getClient(preview).fetch(menuQuery, {
@@ -202,6 +213,7 @@ export async function getStaticProps({ preview = false, params }) {
       preview,
       data: {
         artistsData,
+        allArtistsData,
         menuData,
         footerData
       }

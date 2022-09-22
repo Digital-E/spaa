@@ -325,7 +325,7 @@ function Component({ data }) {
                 >
                 I consent for my name and reason for joining to be used in the promotion of the Declaration on this site, and across our social channels
                 </MyCheckbox>                               */}
-                <Submit>Submit<Circle id="circle" /></Submit>
+                <Submit>{data.submitButton}<Circle id="circle" /></Submit>
             </Form>
             </Formik>
         </Container>

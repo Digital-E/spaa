@@ -30,10 +30,36 @@ const Download = styled.div`
 
 const Component = ({ data }) => {
 
+  function forceDownload(blob, filename) {
+    var a = document.createElement('a');
+    a.download = filename;
+    a.href = blob;
+    // For Firefox https://stackoverflow.com/a/32226068
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }  
+
+  // Current blob size limit is around 500MB for browsers
+  function downloadResource(url, filename) {
+    if (!filename) filename = url.split('\\').pop().split('/').pop();
+    fetch(url, {
+        headers: new Headers({
+          'Origin': location.origin
+        }),
+        mode: 'cors'
+      })
+      .then(response => response.blob())
+      .then(blob => {
+        let blobUrl = window.URL.createObjectURL(blob);
+        forceDownload(blobUrl, filename);
+      })
+      .catch(e => console.error(e));
+  }  
 
   return (
     <Container>
-      <Download><p>{data.downloadLabelOne} <a href={data.download} target="_blank">{data.downloadLabelTwo}</a></p></Download>
+      <Download><p>{data.downloadLabelOne} <a onClick={()=>downloadResource(data.download, data.downloadLabelTwo)}>{data.downloadLabelTwo}</a></p></Download>
       <Title>{data.subtitleOne}</Title>
       <Form data={data}/>
     </Container>

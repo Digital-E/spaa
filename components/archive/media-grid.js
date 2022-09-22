@@ -23,6 +23,24 @@ const Media = styled.div`
         padding: 10px 0;
         flex-basis: 100%;
     }
+
+    &#image > div {
+        padding-top: 66%;
+    }
+
+    // &#video > div {
+    //     padding-top: 66%;
+    // }
+
+    &#image img {
+        object-fit: cover;
+    }
+
+    &#image > div > div:nth-child(1) {
+        padding-top: initial !important;
+    }
+    
+
 `
 
 
@@ -39,9 +57,9 @@ export default function Component ({ data }) {
     let renderSlice = (item,index) => {
         switch(item._type) {
             case 'video':
-            return <Media><Video data={item} id={`video-${index}`} /></Media>
+            return <Media id='video'><Video data={item} id={`video-${index}`} /></Media>
             case 'image':
-            return <Media><Image data={item} hasCaption={true} /></Media>
+            return <Media id='image'><Image data={item} hasCaption={true} /></Media>
         }    
     }
 
