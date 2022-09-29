@@ -57,7 +57,6 @@ export default function ArtistPage({ data = {}, preview }) {
 
   const slug = data?.artistsData?.slug
 
-  console.log(data.allArtistsData)
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
