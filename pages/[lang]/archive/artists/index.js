@@ -71,7 +71,7 @@ export default function ArtistPage({ data = {}, preview }) {
       let bName = ""
 
       if(a.orderByLetter !== null) {
-        aName = a.orderByLetter
+        aName = a.orderByLetter.toUpperCase() 
       } else if (a.title.split(" ")[1] !== undefined) {
         aName = a.title.split(" ")[1]
       } else {
@@ -79,7 +79,7 @@ export default function ArtistPage({ data = {}, preview }) {
       }
 
       if(b.orderByLetter !== null) {
-        bName = b.orderByLetter
+        bName = b.orderByLetter.toUpperCase() 
       } else if(b.title.split(" ")[1] !== undefined) {
         bName = b.title.split(" ")[1]
       } else {
@@ -94,7 +94,7 @@ export default function ArtistPage({ data = {}, preview }) {
       let newItem = item
 
       if(item.orderByLetter !== null) {
-        newItem.orderLetter = item.orderByLetter
+        newItem.orderLetter = item.orderByLetter.toUpperCase() 
       } else if(item.title.split(" ")[1] !== undefined) {
         newItem.orderLetter = item.title.split(" ")[1].split("")[0]
       } else {
