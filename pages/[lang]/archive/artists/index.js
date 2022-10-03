@@ -70,13 +70,17 @@ export default function ArtistPage({ data = {}, preview }) {
       let aName = ""
       let bName = ""
 
-      if(a.title.split(" ")[1] !== undefined) {
+      if(a.orderByLetter !== null) {
+        aName = a.orderByLetter
+      } else if (a.title.split(" ")[1] !== undefined) {
         aName = a.title.split(" ")[1]
       } else {
         aName = a.title
       }
 
-      if(b.title.split(" ")[1] !== undefined) {
+      if(b.orderByLetter !== null) {
+        bName = b.orderByLetter
+      } else if(b.title.split(" ")[1] !== undefined) {
         bName = b.title.split(" ")[1]
       } else {
         bName = b.title
@@ -89,7 +93,9 @@ export default function ArtistPage({ data = {}, preview }) {
     let listWithOrderLetter = sort.map(item => {
       let newItem = item
 
-      if(item.title.split(" ")[1] !== undefined) {
+      if(item.orderByLetter !== null) {
+        newItem.orderLetter = item.orderByLetter
+      } else if(item.title.split(" ")[1] !== undefined) {
         newItem.orderLetter = item.title.split(" ")[1].split("")[0]
       } else {
         newItem.orderLetter = item.title.split("")[0]
