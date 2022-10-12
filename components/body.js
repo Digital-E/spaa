@@ -1,15 +1,18 @@
 import { PortableText } from '@portabletext/react'
 
+import { getFile } from "@sanity/asset-utils";
+import { sanityConfig } from "../lib/config"
+
 const myPortableTextComponents = {
-  // types: {
-  //   image: ({value}) => <img src={value.imageUrl} />,
-  //   callToAction: ({value, isInline}) =>
-  //     isInline ? (
-  //       <a href={value.url}>{value.text}</a>
-  //     ) : (
-  //       <div className="callToAction">{value.text}</div>
-  //     ),
-  // },
+  types: {
+    file: ({value}) => <a href={getFile(value.asset, sanityConfig).asset.url} target="_blank">{value.label}</a>,
+    // callToAction: ({value, isInline}) =>
+    //   isInline ? (
+    //     <a href={value.url}>{value.text}</a>
+    //   ) : (
+    //     <div className="callToAction">{value.text}</div>
+    //   ),
+  },
 
   marks: {
     link: ({children, value}) => {
@@ -30,6 +33,7 @@ const myPortableTextComponents = {
 
 
 export default function Body({ content }) {
+
   return (
     <PortableText value={content} components={myPortableTextComponents} />
   )
