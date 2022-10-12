@@ -2,11 +2,11 @@ const { MAILCHIMP_AUTH: secret } = process.env;
 
 
 export default async (req, res) => {
-  let audienceId = "";
+  let audienceId = "73997b8124";
 
   try {
     const response = await fetch(
-      `https://us13.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+      `https://us16.api.mailchimp.com/3.0/lists/${audienceId}/members`,
       // `https://us13.api.mailchimp.com/3.0/lists/${listId}/segments/${segmentId}/members`,
       {
         method: "post",
@@ -15,7 +15,9 @@ export default async (req, res) => {
           Authorization: `api_key ${secret}`, // REFER TO THE VARIABLE HERE
         },
         body: JSON.stringify({
-          FNAME: req.body.name,
+          "merge_fields":{
+            FNAME: req.body.name
+          },
           email_address: req.body.email,
           status: "subscribed",
         }),

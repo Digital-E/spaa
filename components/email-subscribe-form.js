@@ -158,7 +158,7 @@ const Submit = ({ children, ...props}) => {
 
 
     return (
-        <button type="submit" id="submit-button">
+        <button type="submit" id="submit-button-footer">
             {children}
         </button>
     )
@@ -213,18 +213,17 @@ const SignupForm = ({ data }) => {
       email: values.email
     }
 
-    setTimeout(() => {
+  //   setTimeout(() => {
 
-    document.querySelectorAll(".text-input").forEach(item => {
-      item.value="";
-      // item.placeholder="Thanks for subscribing!";
-    })
+  //   document.querySelectorAll(".text-input").forEach(item => {
+  //     item.value="";
+  //     // item.placeholder="Thanks for subscribing!";
+  //   })
 
-    // document.querySelector("#submit-button").innerText = "✓"
-    newsletterFormRef.current.children[0].children[2].innerText = "✓"
-  }, 1000)
+  //   // document.querySelector("#submit-button").innerText = "✓"
+  //   newsletterFormRef.current.children[0].children[2].innerText = "✓"
+  // }, 1000)
 
-    return
 
   try {
       const res = await fetch("/api/subscribe", {
@@ -234,16 +233,17 @@ const SignupForm = ({ data }) => {
       })
       .then((response) => response.json())
       .then(data => {
+        console.log(data)
         if(data.result !== "error") {
           document.querySelectorAll(".text-input").forEach(item => {
             item.value="";
-            document.querySelector("#submit-button").innerText = "✓"
+            document.querySelector("#submit-button-footer").innerText = "✓"
             // item.placeholder="Thanks for subscribing!";
           })
         } else {
           document.querySelectorAll(".text-input").forEach(item => {
             item.value="";
-            document.querySelector("#submit-button").innerText = data.error
+            document.querySelector("#submit-button-footer").innerText = data.error
             // item.placeholder = data.message;
           })
         }
