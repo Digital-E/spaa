@@ -32,7 +32,7 @@ export default async (req, res) => {
   // };
 
     // contact@performanceartaward.ch
-    let toEmail = 'samabassett@gmail.com'
+    let toEmail = 'contact@performanceartaward.ch'
 
 
   let msg = {
