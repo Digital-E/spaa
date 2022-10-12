@@ -56,11 +56,10 @@ export default function About({ data = {}, preview }) {
           content={data?.applicationData?.content}
           />
         </Head>
-        <Title><span>{data?.applicationData?.title}</span></Title>
+        <Title><span>{data?.applicationData?.applicationOpen ? data?.applicationData?.title : data?.applicationData?.applicationClosedMessage}</span></Title>
         <Container>
           <BackgroundDots />
           <Form data={data?.applicationData} />
-          {/* <Body content={data?.applicationData?.textcolumnone} /> */}
         </Container>
       </Layout>
     </>

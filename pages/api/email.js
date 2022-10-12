@@ -16,7 +16,7 @@ export const config = {
 export default async (req, res) => {
 
  
-  const { email, subject, message, name, 
+  const { email, subject, html, name, 
     attachmentNameOne, attachmentBlobOne,
     attachmentNameTwo, attachmentBlobTwo,
     attachmentNameThree, attachmentBlobThree
@@ -31,24 +31,87 @@ export default async (req, res) => {
   //   subject: subject,
   // };
 
+    // contact@performanceartaward.ch
+    let toEmail = 'samabassett@gmail.com'
+
 
   let msg = {
     // contact@performanceartaward.ch
-    to: [{email: 'samabassett@gmail.com', name: 'Swiss Perfomance Art Award'}],
+    to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
     from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
-    // message.length > 0 ?
-    content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+    // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+    html: html,
     subject: subject,
   };
+
 
 
   if(attachmentNameOne !== null && attachmentBlobOne !== null) {
 
     msg = {
-      // contact@performanceartaward.ch
-      to: [{email: 'samabassett@gmail.com', name: 'Swiss Perfomance Art Award'}],
+      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
       from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
-      content: [{type:'text/plain', value: message}],
+      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+      html: html,
+      subject: subject,
+        attachments: [
+          {
+            // content: attachment,
+            content: attachmentBlobOne,
+            filename: attachmentNameOne,
+            // type: "application/pdf",
+            disposition: "attachment"
+          }
+        ]    
+    };
+  }
+
+  if(
+    attachmentNameOne !== null && 
+    attachmentBlobOne !== null &&
+    attachmentNameTwo !== null && 
+    attachmentBlobTwo !== null
+    ) {
+
+    msg = {
+      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
+      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+      html: html,
+      subject: subject,
+        attachments: [
+          {
+            // content: attachment,
+            content: attachmentBlobOne,
+            filename: attachmentNameOne,
+            // type: "application/pdf",
+            disposition: "attachment"
+          },
+          {
+            // content: attachment,
+            content: attachmentBlobTwo,
+            filename: attachmentNameTwo,
+            // type: "application/pdf",
+            disposition: "attachment"
+          }
+        ]    
+    };
+  }
+
+  if(
+    attachmentNameOne !== null && 
+    attachmentBlobOne !== null &&
+    attachmentNameTwo !== null && 
+    attachmentBlobTwo !== null &&
+    attachmentNameThree !== null && 
+    attachmentBlobThree !== null
+    ) {
+
+    msg = {
+      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
+      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+      html: html,
       subject: subject,
         attachments: [
           {

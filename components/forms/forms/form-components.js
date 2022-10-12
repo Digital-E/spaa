@@ -49,6 +49,11 @@ const Container = styled.div`
       pointer-events: none;
     }
 
+    .error.caption {
+      color: red;
+      margin-bottom: 10px;
+    }
+
 
     .checkbox {
         display: flex;

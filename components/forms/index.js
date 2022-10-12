@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components";
 
 import Form from './forms/form'
@@ -14,6 +15,11 @@ const Container = styled.div`
     button {
         margin: 40px 0 0 0;
     }
+
+    @media(max-width: 989px) {
+      width: 100%;
+      padding: 20px;
+    }
 `
 
 const Title = styled.p`
@@ -29,6 +35,8 @@ const Download = styled.div`
 
 
 const Component = ({ data }) => {
+
+  let [hasSubmitted, setHasSubmitted] = useState(false)
 
   function forceDownload(blob, filename) {
     var a = document.createElement('a');
@@ -58,11 +66,21 @@ const Component = ({ data }) => {
   }  
 
   return (
-    <Container>
-      <Download><p>{data.downloadLabelOne} <a onClick={()=>downloadResource(data.download, data.downloadLabelTwo)}>{data.downloadLabelTwo}</a></p></Download>
-      <Title>{data.subtitleOne}</Title>
-      <Form data={data}/>
-    </Container>
+      data?.applicationOpen ?
+      <Container>
+        {
+          !hasSubmitted ?
+            <>
+              <Download><p>{data.downloadLabelOne} <a onClick={()=>downloadResource(data.download, data.downloadLabelTwo)}>{data.downloadLabelTwo}</a></p></Download>
+              <Title>{data.subtitleOne}</Title>
+              <Form data={data} hasSubmitted={() => setHasSubmitted(true)}/>
+            </>
+          :
+            <Title>{data.confirmationMessage}</Title>
+        }
+      </Container>
+      :
+      null
   );
 };
 
