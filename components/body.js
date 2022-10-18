@@ -5,7 +5,7 @@ import { sanityConfig } from "../lib/config"
 
 const myPortableTextComponents = {
   types: {
-    file: ({value}) => <a href={getFile(value.asset, sanityConfig).asset.url} target="_blank">{value.label}</a>,
+    file: ({value}) => <a href={value.asset ? getFile(value.asset, sanityConfig).asset.url : null} target="_blank">{value.label}</a>,
     // callToAction: ({value, isInline}) =>
     //   isInline ? (
     //     <a href={value.url}>{value.text}</a>
