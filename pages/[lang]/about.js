@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Layout from '../../components/layout'
 import { SITE_NAME } from '../../lib/constants'
-import { aboutQuery, menuQuery, footerQuery } from '../../lib/queries'
+import { aboutQuery, previewAboutQuery, menuQuery, footerQuery } from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
 import styled from 'styled-components'
@@ -98,9 +98,15 @@ export async function getStaticProps({ preview = false, params }) {
 
   let slug = `${params.lang}__about`
 
-  const aboutData = await getClient(preview).fetch(aboutQuery, {
+  let aboutData = await getClient(preview).fetch(aboutQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    aboutData = await getClient(preview).fetch(previewAboutQuery, {
+      slug: slug,
+    })
+  }
 
   // Get Menu And Footer
 

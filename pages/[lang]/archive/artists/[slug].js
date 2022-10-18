@@ -4,7 +4,7 @@ import ErrorPage from 'next/error'
 import Header from '../../../../components/header'
 import Layout from '../../../../components/layout'
 import { SITE_NAME } from '../../../../lib/constants'
-import { artistSlugsQuery, artistQuery, menuQuery, footerQuery } from '../../../../lib/queries'
+import { artistSlugsQuery, artistQuery, previewArtistQuery, menuQuery, footerQuery } from '../../../../lib/queries'
 import { sanityClient, getClient } from '../../../../lib/sanity.server'
 
 import styled from "styled-components"
@@ -101,9 +101,15 @@ export async function getStaticProps({ params, preview = false }) {
 
   let slug = `${params.lang}__archive__artists__${params.slug}`
 
-  const data = await getClient(preview).fetch(artistQuery, {
+  let data = await getClient(preview).fetch(artistQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    data = await getClient(preview).fetch(previewArtistQuery, {
+      slug: slug,
+    })
+  }
 
   // Get Menu And Footer
 

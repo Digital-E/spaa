@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Layout from '../../../../components/layout'
 import { SITE_NAME } from '../../../../lib/constants'
-import { artistsQuery, allArtistsQuery, menuQuery, footerQuery } from '../../../../lib/queries'
+import { artistsQuery, allArtistsQuery, previewArtistsQuery, menuQuery, footerQuery } from '../../../../lib/queries'
 import { getClient } from '../../../../lib/sanity.server'
 import styled from 'styled-components'
 
@@ -199,9 +199,16 @@ export async function getStaticProps({ preview = false, params }) {
 
   let slug = `${params.lang}__archive__artists`
 
-  const artistsData = await getClient(preview).fetch(artistsQuery, {
+  let artistsData = await getClient(preview).fetch(artistsQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    artistsData = await getClient(preview).fetch(previewArtistsQuery, {
+      slug: slug,
+    })
+  }
+
 
   const allArtistsData = await getClient(preview).fetch(allArtistsQuery, {
     lang: params.lang,

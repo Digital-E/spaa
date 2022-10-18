@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Layout from '../../components/layout'
 import { SITE_NAME } from '../../lib/constants'
-import { indexQuery, indexEventsQuery, homeQuery, menuQuery, footerQuery } from '../../lib/queries'
+import { homeQuery, previewHomeQuery, menuQuery, footerQuery } from '../../lib/queries'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 
 
@@ -58,9 +58,15 @@ export async function getStaticProps({ preview = false, params }) {
 
   let slug = params.lang
 
-  const homeData = await getClient(preview).fetch(homeQuery, {
+  let homeData = await getClient(preview).fetch(homeQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    homeData = await getClient(preview).fetch(previewHomeQuery, {
+      slug: slug,
+    }) 
+  }
 
 
   // Get Menu And Footer

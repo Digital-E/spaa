@@ -4,7 +4,7 @@ import ErrorPage from 'next/error'
 import Header from '../../../../components/header'
 import Layout from '../../../../components/layout'
 import { SITE_NAME } from '../../../../lib/constants'
-import { yearSlugsQuery, yearQuery, menuQuery, footerQuery } from '../../../../lib/queries'
+import { yearSlugsQuery, yearQuery, previewYearQuery, menuQuery, footerQuery } from '../../../../lib/queries'
 import { sanityClient, getClient } from '../../../../lib/sanity.server'
 
 import styled from "styled-components"
@@ -124,9 +124,15 @@ export async function getStaticProps({ params, preview = false }) {
 
   let slug = `${params.lang}__archive__years__${params.slug}`
 
-  const data = await getClient(preview).fetch(yearQuery, {
+  let data = await getClient(preview).fetch(yearQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    data = await getClient(preview).fetch(previewYearQuery, {
+      slug: slug,
+    })
+  }
 
   // Get Menu And Footer
 

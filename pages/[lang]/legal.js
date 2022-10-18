@@ -7,7 +7,7 @@ import ErrorPage from 'next/error'
 import Header from '../../components/header'
 import Layout from '../../components/layout'
 import { SITE_NAME } from '../../lib/constants'
-import { legalQuery, menuQuery, footerQuery } from '../../lib/queries'
+import { legalQuery, previewLegalQuery, menuQuery, footerQuery } from '../../lib/queries'
 import { getClient } from '../../lib/sanity.server'
 
 import Body from "../../components/body"
@@ -67,9 +67,15 @@ export async function getStaticProps({ params, preview = false }) {
   let slug = `${params.lang}__legal`
 
 
-  const data = await getClient(preview).fetch(legalQuery, {
+  let data = await getClient(preview).fetch(legalQuery, {
     slug: slug,
   })
+
+  if(preview) {
+    data = await getClient(preview).fetch(previewLegalQuery, {
+      slug: slug,
+    })
+  }
 
   // Get Menu And Footer
 
