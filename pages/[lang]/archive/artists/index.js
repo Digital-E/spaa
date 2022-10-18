@@ -176,7 +176,7 @@ export default function ArtistPage({ data = {}, preview }) {
           />
         </Head>
         <Container>
-            <Filter />
+            <Filter data={data?.artistsData} />
             <List>
               {list?.map(item =>
                 <Col>
