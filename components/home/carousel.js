@@ -214,8 +214,6 @@ export default ({ data }) => {
       }, []);  
       
 
-      console.log(data)
-
     return (
         <Container>
             <Carousel ref={gallery}>
