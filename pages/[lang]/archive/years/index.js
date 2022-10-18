@@ -60,7 +60,7 @@ export default function YearPage({ data = {}, preview }) {
           />
         </Head>
         <Container>
-            <Filter data={data?.yearData?} />
+            <Filter data={data?.yearData} />
             <Years>
                 {data.yearData.slices?.map(item => <Year><Link href={`/${router.query.lang}/archive/years/${item}`}><p>{item}</p></Link></Year>)}
             </Years>
