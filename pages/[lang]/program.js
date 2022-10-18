@@ -47,7 +47,7 @@ const Col = styled.div`
     }
 
     :nth-child(3) {
-        flex-basis: 20%;
+        flex-basis: 30%;
     }
 
     @media(max-width: 989px) {

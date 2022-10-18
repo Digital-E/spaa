@@ -19,7 +19,7 @@ const Title = styled.div`
 
   span {
     font-size: 10vw;
-    line-height: 0.6;
+    line-height: 0.9;
   }
 `
 

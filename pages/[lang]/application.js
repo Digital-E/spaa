@@ -32,6 +32,7 @@ const Title = styled.div`
     span {
         font-size: 10vw;
         line-height: 1;
+        white-space: nowrap;
     }
 `
 

@@ -37,7 +37,7 @@ const Col = styled.div`
     }
 
     :nth-child(3) {
-        flex-basis: 20%;
+        flex-basis: 30%;
     }
 
     @media(max-width: 989px) {
@@ -102,6 +102,7 @@ export async function getStaticProps({ preview = false, params }) {
     slug: slug,
   })
 
+  console.log(aboutData)
 
   // Get Menu And Footer
 

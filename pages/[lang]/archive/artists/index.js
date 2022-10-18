@@ -24,7 +24,11 @@ const List = styled.div`
   }
 `
 
-const ListItem = styled.div``
+const ListItem = styled.div`
+  p {
+    margin: 5px 0;
+  }
+`
 
 const Letter = styled.div`
   p {

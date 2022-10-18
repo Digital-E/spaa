@@ -6,6 +6,8 @@ import normalizeWheel from 'normalize-wheel';
 
 import gsap from "gsap"
 
+import Body from '../body'
+
 let Flickity = null
 
 if (typeof window !== "undefined") {
@@ -56,12 +58,6 @@ const Slide = styled.div`
 `;
 
 
-
-let info = [
-    "Save the Date 12.11.2022 Kunstmuseum Luzern",
-    "Once Again",
-    "Swiss Performance Art Award",
-]
 
 
 
@@ -218,14 +214,16 @@ export default ({ data }) => {
       }, []);  
       
 
+      console.log(data)
 
     return (
         <Container>
             <Carousel ref={gallery}>
-                {info.map((item, index) => {
+                {data.slides.map((item, index) => {
                 return (
                     <Slide key={index} className="carousel-slide">
-                        <div><p>{item}</p></div>
+                        {/* <div><p>{item.slideText}</p></div> */}
+                        <div><Body content={item.slideText} /></div>
                     </Slide>
                 );
                 })}

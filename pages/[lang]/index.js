@@ -15,10 +15,7 @@ import DrawingTool from "../../components/home/drawing-tool"
 
 
 export default function Index({ data = {}, preview }) {
-  // const heroPost = allPosts[0]
-  // const morePosts = allPosts.slice(1)
 
-  // let [allEvents, setAllEvents] = useState([]);
   const router = useRouter()
 
   const slug = data?.homeData?.slug
@@ -49,7 +46,7 @@ export default function Index({ data = {}, preview }) {
           />
         </Head>
         <Overlay />
-        <Carousel />
+        <Carousel data={data?.homeData} />
         <DrawingTool preview={preview} />
       </Layout>
     </>
@@ -57,10 +54,7 @@ export default function Index({ data = {}, preview }) {
 }
 
 export async function getStaticProps({ preview = false, params }) {
-  // const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery))
-  // return {
-  //   props: { allPosts, preview },
-  // }
+
 
   let slug = params.lang
 
@@ -68,15 +62,8 @@ export async function getStaticProps({ preview = false, params }) {
     slug: slug,
   })
 
-  // const news = await getClient(preview).fetch(indexQuery, {
-  //   slug: slug
-  // });
 
-  // const events = await getClient(preview).fetch(indexEventsQuery, {
-  //   slug: slug
-  // });
-
-  // // Get Menu And Footer
+  // Get Menu And Footer
 
   const menuData = await getClient(preview).fetch(menuQuery, {
     lang: params.lang
@@ -91,8 +78,6 @@ export async function getStaticProps({ preview = false, params }) {
       preview,
       data: {
         homeData,
-        // news,
-        // events,
         menuData,
         // footerData
       }

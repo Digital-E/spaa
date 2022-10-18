@@ -34,7 +34,7 @@ export default ({ data, preview }) => {
   let colors = [
     {
       color: '#EA3333',
-      width: 2,
+      width: 10,
     },
     {
       color: '#0100F5',

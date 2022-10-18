@@ -39,10 +39,24 @@ const Grid = styled.div`
         border-radius: 999px;
     }
 
+    > div:last-child {
+        display: none;
+    }
+
     @media(max-width: 989px) {
         > div > div:nth-child(even) {
             display: none;
         }
+
+        > div > div > div {
+            width: 20px;
+            height: 20px;
+        }
+
+
+        > div:last-child {
+            display: flex;
+        }        
     }
 `
 
@@ -54,6 +68,13 @@ export default ({ data }) => {
     return (
         <Container>
             <Grid>
+                <div>
+                    <div><div></div></div>
+                    <div><div></div></div>
+                    <div><div></div></div>
+                    <div><div></div></div>
+                    <div><div></div></div>
+                </div>
                 <div>
                     <div><div></div></div>
                     <div><div></div></div>
