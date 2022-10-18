@@ -154,13 +154,13 @@ export default function Component ({ data }) {
                 <div>
                 <div class="season-filter">
                     <Link href={`/${router.query.lang}/archive/years`}>
-                        <div class="season-filter__label p">Years</div>
+                        <div class="season-filter__label p">{data.years}</div>
                         <div class="season-filter__selector"></div>
                     </Link>
                 </div>                
                 <div class="season-filter">
                     <Link href={`/${router.query.lang}/archive/artists`}>
-                        <div class="season-filter__label p">Artists</div>
+                        <div class="season-filter__label p">{data.artists}</div>
                         <div class="season-filter__selector"></div>
                     </Link>
                 </div>

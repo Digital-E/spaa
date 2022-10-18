@@ -1,3 +1,21 @@
+import styled from 'styled-components'
+
+const Container = styled.div`
+    position: relative;
+    padding-top: 66.66666%;
+
+    .plyr__video-embed__container {
+        transform: translateY(-36%) !important;
+    }
+
+    > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+`
 
 
 export default function Component({ data, id }) {
@@ -12,7 +30,7 @@ export default function Component({ data, id }) {
 
     return (
         <>
-            <div>
+            <Container>
                 <div class="plyr__video-embed player" id={id}>
                     <iframe
                     src={
@@ -26,7 +44,7 @@ export default function Component({ data, id }) {
                     allow="autoplay"
                     ></iframe>
                 </div>
-            </div>
+            </Container>
             {
                 data.caption && <span className="caption">{data.caption}</span>
             }
