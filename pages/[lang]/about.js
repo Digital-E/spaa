@@ -102,8 +102,6 @@ export async function getStaticProps({ preview = false, params }) {
     slug: slug,
   })
 
-  console.log(aboutData)
-
   // Get Menu And Footer
 
   const menuData = await getClient(preview).fetch(menuQuery, {
