@@ -264,8 +264,8 @@ input, input::placeholder, button, .error-label, label {
     font-size: 1rem;
 }
 
-input {
-    border-radius: 0 !important;
+.text-input {
+    border-radius: 0;
 }
 
 time {
