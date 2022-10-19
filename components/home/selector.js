@@ -10,6 +10,10 @@ const Container = styled.div`
     transform: translateX(-50%);
     box-sizing: border-box;
     z-index: 99;
+
+    // @media(max-width: 578px) {
+    //     bottom: 100px;
+    // }
 `
 const Circle = styled.div`
     height: 15px;

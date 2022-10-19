@@ -26,6 +26,11 @@ const Title = styled.div`
 const Cols = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
+
+  div:empty {
+    display: none;
+  }
 
   @media(max-width: 989px) {
     flex-direction: column;
@@ -35,21 +40,23 @@ const Cols = styled.div`
 
 const ColOne = styled.div`
   display: flex;
-  margin-top: 50px;
   flex-basis: 50%;
+
 
   > div {
     padding: 0 20px 0 0;
+    margin-top: 50px;
   }
 `;
 
 const ColTwo = styled.div`
   display: flex;
-  margin-top: 50px;
   flex-basis: 50%;
+
 
   > div {
     padding: 0 20px 0 0;
+    margin-top: 50px;
   }
 `;
 

@@ -12,8 +12,8 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     max-width: 1800px;
     z-index: 0;
 

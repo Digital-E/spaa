@@ -18,8 +18,8 @@ const Container = styled.div`
     position: fixed;
     z-index: 0;
     top: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     left: 0;
 
     .flickity-viewport {
@@ -46,8 +46,8 @@ const Slide = styled.div`
     padding: 20px;
 
     * {
-        font-size: 11vw !important;
-        line-height: 1.2;
+        font-size: 10vw !important;
+        line-height: 1;
     }
 
     @media(min-width: 1800px) {
