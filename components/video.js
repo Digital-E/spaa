@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     position: relative;
-    padding-top: 66.66666%;
+    padding-top: 66%;
 
     .plyr__video-embed__container {
         transform: translateY(-36%) !important;
