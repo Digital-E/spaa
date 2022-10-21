@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "next": "latest",
     "next-sanity": "0.5.0",
     "next-sanity-image": "^3.2.1",
+    "next-sitemap": "^3.1.29",
     "normalize-wheel": "^1.0.1",
     "plyr": "^3.7.2",
     "react": "^17.0.2",

@@ -3,6 +3,8 @@ import { PortableText } from '@portabletext/react'
 import { getFile } from "@sanity/asset-utils";
 import { sanityConfig } from "../lib/config"
 
+import Link from './link'
+
 const myPortableTextComponents = {
   types: {
     file: ({value}) => <a href={value.asset ? getFile(value.asset, sanityConfig).asset.url : null} target="_blank">{value.label}</a>,
@@ -20,12 +22,15 @@ const myPortableTextComponents = {
 
       var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
       var regex = new RegExp(expression);
-      let isURL = value.href?.match(regex) !== null ? true : false
+      let isURL = value.href?.match(regex) !== null ? true : false   
 
       return (
-        <a target={isURL ? "_blank" : undefined} href={value.href} rel={rel}>
+        isURL ?
+        <a target="_blank" href={value.href} rel={rel}>
           {children}
         </a>
+        :
+        <Link href={value.href}>{children}</Link>
       )
     },
   },

@@ -32,7 +32,7 @@ const Title = styled.div`
     span {
         font-size: 10vw;
         line-height: 1;
-        white-space: nowrap;
+        white-space: ${props => props.open ? 'nowrap' : 'initial'}
     }
 `
 
@@ -57,7 +57,7 @@ export default function About({ data = {}, preview }) {
           content={data?.applicationData?.content}
           />
         </Head>
-        <Title><span>{data?.applicationData?.applicationOpen ? data?.applicationData?.title : data?.applicationData?.applicationClosedMessage}</span></Title>
+        <Title open={data?.applicationData?.applicationOpen}><span>{data?.applicationData?.applicationOpen ? data?.applicationData?.title : data?.applicationData?.applicationClosedMessage}</span></Title>
         <Container>
           <BackgroundDots />
           <Form data={data?.applicationData} />
