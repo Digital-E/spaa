@@ -70,7 +70,9 @@ export default function ArtistPage({ data = {}, preview }) {
 
     if(data?.allArtistsData?.length === 0) return
 
-    let sort = data?.allArtistsData?.sort((a, b) => {
+    data = data?.allArtistsData?.filter(item => item.slug !== null)
+
+    let sort = data?.sort((a, b) => {
       let aName = ""
       let bName = ""
 
