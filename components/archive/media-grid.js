@@ -24,8 +24,8 @@ const Media = styled.div`
         flex-basis: 100%;
     }
 
-    &#image > div,  &#image > span {
-        padding-top: 66%;
+    &#image > div:nth-child(1),  &#image > span:nth-child(1) {
+        padding-top: 66% !important;
     }
 
 
@@ -37,7 +37,7 @@ const Media = styled.div`
         object-fit: cover;
     }
 
-    &#image > div > div:nth-child(1), &#image > span > span {
+    &#image > div > div:nth-child(1), &#image > span > span:nth-child(1) {
         padding-top: initial !important;
     }
     
