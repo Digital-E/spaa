@@ -24,19 +24,20 @@ const Media = styled.div`
         flex-basis: 100%;
     }
 
-    &#image > div {
+    &#image > div,  &#image > span {
         padding-top: 66%;
     }
 
-    // &#video > div {
-    //     padding-top: 66%;
-    // }
+
+    &#video > div {
+        padding-top: 66%;
+    }
 
     &#image img {
         object-fit: cover;
     }
 
-    &#image > div > div:nth-child(1) {
+    &#image > div > div:nth-child(1), &#image > span > span {
         padding-top: initial !important;
     }
     
