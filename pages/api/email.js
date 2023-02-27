@@ -33,12 +33,17 @@ export default async (req, res) => {
 
     // contact@performanceartaward.ch
     let toEmail = 'contact@performanceartaward.ch'
+    // let toEmail = 'info@evaknuesel.ch'
+    // let toEmail = 'hello@samuelbassett.xyz'
+
+    // let fromEmail = 'swisspaa@gmail.com'
+    let fromEmail = 'contact@performanceartaward.ch'
 
 
   let msg = {
     // contact@performanceartaward.ch
     to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-    from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+    from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
     // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
     html: html,
     subject: subject,
@@ -50,7 +55,7 @@ export default async (req, res) => {
 
     msg = {
       to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
       // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
       html: html,
       subject: subject,
@@ -75,7 +80,7 @@ export default async (req, res) => {
 
     msg = {
       to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
       // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
       html: html,
       subject: subject,
@@ -109,7 +114,7 @@ export default async (req, res) => {
 
     msg = {
       to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: 'swisspaa@gmail.com', name:'Swiss Perfomance Art Award'},
+      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
       // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
       html: html,
       subject: subject,
