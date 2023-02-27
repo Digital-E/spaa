@@ -32,8 +32,8 @@ export default async (req, res) => {
   // };
 
     // contact@performanceartaward.ch
-    let toEmail = 'contact@performanceartaward.ch'
-    // let toEmail = 'info@evaknuesel.ch'
+    // let toEmail = 'contact@performanceartaward.ch'
+    let toEmail = 'info@evaknuesel.ch'
     // let toEmail = 'hello@samuelbassett.xyz'
 
     // let fromEmail = 'swisspaa@gmail.com'
