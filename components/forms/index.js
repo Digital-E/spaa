@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import Form from './forms/form'
 
@@ -28,8 +28,22 @@ const Title = styled.p`
 `
 
 const Download = styled.div`
+    display: flex;
     margin: 30px auto 50px auto;
     width: fit-content;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      margin: 0 0 0 5px;
+    }
+
+    p {
+      margin: 0;
+    }
 `
 
 
@@ -50,6 +64,7 @@ const Component = ({ data }) => {
 
   // Current blob size limit is around 500MB for browsers
   function downloadResource(url, filename) {
+    if(url === null) return
     if (!filename) filename = url.split('\\').pop().split('/').pop();
     fetch(url, {
         headers: new Headers({
@@ -66,12 +81,19 @@ const Component = ({ data }) => {
   }  
 
   return (
-      data?.applicationOpen ?
+      // data?.applicationOpen ?
       <Container>
         {
           !hasSubmitted ?
             <>
-              <Download><p>{data.downloadLabelOne} <a onClick={()=>downloadResource(data.download, data.downloadLabelTwo)}>{data.downloadLabelTwo}</a></p></Download>
+              <Download>
+                <p>{data.downloadLabelOne}</p> 
+                <div>
+                  <a onClick={()=>downloadResource(data.download, data.downloadLabelTwo)}>{data.downloadLabelTwo}</a>
+                  <a onClick={()=>downloadResource(data.downloadTwo, data.downloadLabelThree)}>{data.downloadLabelThree}</a>
+                  <a onClick={()=>downloadResource(data.downloadThree, data.downloadLabelFour)}>{data.downloadLabelFour}</a>
+                </div>
+              </Download>
               <Title>{data.subtitleOne}</Title>
               <Form data={data} hasSubmitted={() => setHasSubmitted(true)}/>
             </>
@@ -79,8 +101,8 @@ const Component = ({ data }) => {
             <Title>{data.confirmationMessage}</Title>
         }
       </Container>
-      :
-      null
+      // :
+      // null
   );
 };
 
