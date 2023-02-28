@@ -81,7 +81,7 @@ const Component = ({ data }) => {
   }  
 
   return (
-      // data?.applicationOpen ?
+      data?.applicationOpen ?
       <Container>
         {
           !hasSubmitted ?
@@ -101,8 +101,8 @@ const Component = ({ data }) => {
             <Title>{data.confirmationMessage}</Title>
         }
       </Container>
-      // :
-      // null
+      :
+      null
   );
 };
 
