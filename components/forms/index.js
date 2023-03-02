@@ -44,6 +44,14 @@ const Download = styled.div`
     p {
       margin: 0;
     }
+
+    @media(max-width: 989px) {
+      flex-direction: column;
+
+      a {
+        margin: 5px 0 0 0;
+      }
+    }
 `
 
 

@@ -171,12 +171,12 @@ function Component({ data, hasSubmitted }) {
             showing: Yup.string()
             .required("Required"),
             // .oneOf([fields[11].label , fields[12].label]),
-            authorship: Yup.string()
-            .required("Required"),
-            otherParticipants: Yup.string()
-            .required("Required"),
-            websitesAndLinks: Yup.string()
-            .required("Required"),
+            authorship: Yup.string(),
+            // .required("Required"),
+            otherParticipants: Yup.string(),
+            // .required("Required"),
+            websitesAndLinks: Yup.string(),
+            // .required("Required"),
             confirmation: Yup.boolean()
             .required("Required")
             .oneOf([true], "Must fill in."),
