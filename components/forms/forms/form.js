@@ -269,19 +269,19 @@ function Component({ data, hasSubmitted }) {
                 list={[fields[11]?.label, fields[12]?.label]}
                 />
                 <MyTextInput
-                label={`${fields[13]?.label}*:`}
+                label={`${fields[13]?.label}:`}
                 name="authorship"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[14]?.label}*:`}
+                label={`${fields[14]?.label}:`}
                 name="otherParticipants"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[15]?.label}*:`}
+                label={`${fields[15]?.label}:`}
                 name="websitesAndLinks"
                 type="text"
                 placeholder={''}
