@@ -183,7 +183,9 @@ function Component({ data, hasSubmitted }) {
             uploadOne: Yup.mixed().test('fileSize', "File Size is too large",
             value => value !== undefined ? value.size <= FILE_SIZE : true),
             uploadTwo: Yup.mixed().test('fileSize', "File Size is too large",
-            value => value !== undefined ? value.size <= FILE_SIZE : true),
+            value => value !== undefined ? value.size <= FILE_SIZE : true)
+            .required("Required")
+            ,
             uploadThree: Yup.mixed().test('fileSize', "File Size is too large",
             value => value !== undefined ? value.size <= FILE_SIZE : true)
             // checkboxOne: Yup.boolean()

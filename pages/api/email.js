@@ -34,7 +34,7 @@ export default async (req, res) => {
     // contact@performanceartaward.ch
     // let toEmail = 'contact@performanceartaward.ch'
     let toEmail = 'info@evaknuesel.ch'
-    // let toEmail = 'hello@samuelbassett.xyz'
+    // let toEmail = 'samabassett@gmail.com'
 
     // let fromEmail = 'swisspaa@gmail.com'
     let fromEmail = 'contact@performanceartaward.ch'
@@ -49,106 +49,51 @@ export default async (req, res) => {
     subject: subject,
   };
 
-
-
-  if(attachmentNameOne !== null && attachmentBlobOne !== null) {
-
-    msg = {
-      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
-      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
-      html: html,
-      subject: subject,
-        attachments: [
-          {
-            // content: attachment,
-            content: attachmentBlobOne,
-            filename: attachmentNameOne,
-            // type: "application/pdf",
-            disposition: "attachment"
-          }
-        ]    
-    };
+  let attachment = {
+    content: '',
+    filename: '',
+    disposition: "attachment"
   }
 
-  if(
-    attachmentNameOne !== null && 
-    attachmentBlobOne !== null &&
-    attachmentNameTwo !== null && 
-    attachmentBlobTwo !== null
-    ) {
+  let attachments = []
 
-    msg = {
-      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
-      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
-      html: html,
-      subject: subject,
-        attachments: [
-          {
-            // content: attachment,
-            content: attachmentBlobOne,
-            filename: attachmentNameOne,
-            // type: "application/pdf",
-            disposition: "attachment"
-          },
-          {
-            // content: attachment,
-            content: attachmentBlobTwo,
-            filename: attachmentNameTwo,
-            // type: "application/pdf",
-            disposition: "attachment"
-          }
-        ]    
-    };
+  let addAttachment = (blob, name) => {
+
+    let attachment = {
+      content: blob,
+      filename: name,
+      disposition: "attachment"
+    }
+
+    attachments.push(attachment)
   }
 
-  if(
-    attachmentNameOne !== null && 
-    attachmentBlobOne !== null &&
-    attachmentNameTwo !== null && 
-    attachmentBlobTwo !== null &&
-    attachmentNameThree !== null && 
-    attachmentBlobThree !== null
-    ) {
-
-    msg = {
-      to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
-      from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
-      // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
-      html: html,
-      subject: subject,
-        attachments: [
-          {
-            // content: attachment,
-            content: attachmentBlobOne,
-            filename: attachmentNameOne,
-            // type: "application/pdf",
-            disposition: "attachment"
-          },
-          {
-            // content: attachment,
-            content: attachmentBlobTwo,
-            filename: attachmentNameTwo,
-            // type: "application/pdf",
-            disposition: "attachment"
-          },
-          {
-            // content: attachment,
-            content: attachmentBlobThree,
-            filename: attachmentNameThree,
-            // type: "application/pdf",
-            disposition: "attachment"
-          }
-        ]    
-    };
+  if(attachmentBlobOne !== null && attachmentNameOne !== null) {
+    addAttachment(attachmentBlobOne, attachmentNameOne)
   }
+
+  if(attachmentBlobTwo !== null && attachmentNameTwo !== null) {
+    addAttachment(attachmentBlobTwo, attachmentNameTwo)
+  }
+
+  if(attachmentBlobThree !== null && attachmentNameThree !== null) {
+    addAttachment(attachmentBlobThree, attachmentNameThree)
+  }
+
+
+  msg = {
+    to: [{email: toEmail, name: 'Swiss Perfomance Art Award'}],
+    from: {email: fromEmail, name:'Swiss Perfomance Art Award'},
+    // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
+    html: html,
+    subject: subject,
+    attachments: attachments   
+  }; 
 
   try {
     await sgMail.send(msg);
     res.json({ message: `Email has been sent` })
   } catch (error) {
-    // console.log(error.response.body.errors)
     res.status(500).json({ error: 'Error sending email' })
   }
 }
