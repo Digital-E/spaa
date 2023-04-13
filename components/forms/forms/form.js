@@ -99,11 +99,13 @@ function Component({ data, hasSubmitted }) {
         }
 
         try {
-        await fetch("/api/email", {
+        let res = await fetch("/api/email", {
             "method": "POST",
             "headers": { "content-type": "application/json" },
             "body": JSON.stringify(dataObj)
         })
+
+        console.log(res)
 
         // setFormHasValidated(true);
         hasSubmitted()
@@ -112,7 +114,7 @@ function Component({ data, hasSubmitted }) {
 
 
         } catch (error) {
-
+            console.log(error)
         }
 
     }    

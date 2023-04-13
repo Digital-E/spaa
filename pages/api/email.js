@@ -33,8 +33,8 @@ export default async (req, res) => {
 
     // contact@performanceartaward.ch
     // let toEmail = 'contact@performanceartaward.ch'
-    let toEmail = 'info@evaknuesel.ch'
-    // let toEmail = 'samabassett@gmail.com'
+    // let toEmail = 'info@evaknuesel.ch'
+    let toEmail = 'samabassett@gmail.com'
 
     // let fromEmail = 'swisspaa@gmail.com'
     let fromEmail = 'contact@performanceartaward.ch'
@@ -83,18 +83,18 @@ export default async (req, res) => {
           },
         ],
         cc: [
-          {
-            email: 'swisspaa@gmail.com',
-            name: 'Swiss Performance Art Award'
-          },
-          {
-            email: 'knuesel@fotomuseum.ch',
-            name: 'Eva' 
-          },
-          {
-            email: 'samabassett@gmail.com',
-            name: 'Sam'
-          },         
+          // {
+          //   email: 'swisspaa@gmail.com',
+          //   name: 'Swiss Performance Art Award'
+          // },
+          // {
+          //   email: 'knuesel@fotomuseum.ch',
+          //   name: 'Eva' 
+          // },
+          // {
+          //   email: 'samabassett@gmail.com',
+          //   name: 'Sam'
+          // },         
         ],
       }
     ],
@@ -106,9 +106,11 @@ export default async (req, res) => {
   }; 
 
   try {
-    await sgMail.send(msg);
+    let response = await sgMail.send(msg);
+    console.log(response)
     res.json({ message: `Email has been sent` })
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: 'Error sending email' })
   }
 }
