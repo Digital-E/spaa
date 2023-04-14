@@ -39,6 +39,9 @@ export default function Meta() {
       />
       {/* PLYR CSS */}
       <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
+
+      {/* Cloudinary Upload Widget */}
+      <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript" />  
       
       <meta property="og:image" content={HOME_OG_IMAGE_URL} key="ogImage" />
     </Head>

@@ -17,9 +17,9 @@ export default async (req, res) => {
 
  
   const { email, subject, html, name, 
-    attachmentNameOne, attachmentBlobOne,
-    attachmentNameTwo, attachmentBlobTwo,
-    attachmentNameThree, attachmentBlobThree
+    // attachmentNameOne, attachmentBlobOne,
+    // attachmentNameTwo, attachmentBlobTwo,
+    // attachmentNameThree, attachmentBlobThree
     } = req.body
 
 
@@ -46,30 +46,30 @@ export default async (req, res) => {
   //   disposition: "attachment"
   // }
 
-  let attachments = []
+  // let attachments = []
 
-  let addAttachment = (blob, name) => {
+  // let addAttachment = (blob, name) => {
 
-    let attachment = {
-      content: blob,
-      filename: name,
-      disposition: "attachment"
-    }
+  //   let attachment = {
+  //     content: blob,
+  //     filename: name,
+  //     disposition: "attachment"
+  //   }
 
-    attachments.push(attachment)
-  }
+  //   attachments.push(attachment)
+  // }
 
-  if(attachmentBlobOne !== null && attachmentNameOne !== null) {
-    addAttachment(attachmentBlobOne, attachmentNameOne)
-  }
+  // if(attachmentBlobOne !== null && attachmentNameOne !== null) {
+  //   addAttachment(attachmentBlobOne, attachmentNameOne)
+  // }
 
-  if(attachmentBlobTwo !== null && attachmentNameTwo !== null) {
-    addAttachment(attachmentBlobTwo, attachmentNameTwo)
-  }
+  // if(attachmentBlobTwo !== null && attachmentNameTwo !== null) {
+  //   addAttachment(attachmentBlobTwo, attachmentNameTwo)
+  // }
 
-  if(attachmentBlobThree !== null && attachmentNameThree !== null) {
-    addAttachment(attachmentBlobThree, attachmentNameThree)
-  }
+  // if(attachmentBlobThree !== null && attachmentNameThree !== null) {
+  //   addAttachment(attachmentBlobThree, attachmentNameThree)
+  // }
 
 
   let msg = {
@@ -94,7 +94,11 @@ export default async (req, res) => {
           // {
           //   email: 'samabassett@gmail.com',
           //   name: 'Sam'
-          // },         
+          // },   
+          {
+            email: 'sam@acceptandproceed.com',
+            name: 'Sam'
+          },        
         ],
       }
     ],
@@ -102,15 +106,15 @@ export default async (req, res) => {
     // content: [{type:'text/plain', value: message !== undefined ? message : " "}],
     html: html,
     subject: subject,
-    attachments: attachments   
+    // attachments: attachments   
   }; 
 
   try {
     let response = await sgMail.send(msg);
-    console.log(response)
+    // console.log(response)
     res.json({ message: `Email has been sent` })
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     res.status(500).json({ error: 'Error sending email' })
   }
 }

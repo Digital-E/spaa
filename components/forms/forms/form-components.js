@@ -3,7 +3,10 @@ import { useField, useFormikContext } from "formik";
 
 import styled from "styled-components";
 
-
+const Loading = styled.img`
+    width: 20px;
+    margin: 40px 0 0 0;
+`
 
 const Container = styled.div`
     padding: 0;
@@ -27,6 +30,11 @@ const Container = styled.div`
         flex-grow: 1;
         padding: 0;
         margin: 0 5px -2px 5px;
+    }
+
+    #submit-button.uploading {
+      pointer-events: none;
+      opacity: 0.2;
     }
 
     form input::placeholder {
@@ -426,11 +434,13 @@ const Submit = ({ children, ...props}) => {
       isActive = false
   }
 
-
   return (
-      <button type="submit" id="submit-button" onClick={() => initButton = true}>
+    <>
+      <button className={(props.isUploadingOne === true) || (props.isUploadingTwo === true) || (props.isUploadingThree === true) ? 'uploading' : ''} type="submit" id="submit-button" onClick={() => initButton = true}>
           {children}
       </button>
+      {(props.isUploadingOne === true) || (props.isUploadingTwo === true) || (props.isUploadingThree === true) ? <Loading src="/images/loading.gif" /> : ''}
+    </>
   )
 }
 
