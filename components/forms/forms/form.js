@@ -285,6 +285,7 @@ function Component({ data, hasSubmitted }) {
             Other participants (names, roles): ${data.otherParticipants} <br/>
             Websites / Videolinks: ${data.websitesAndLinks} <br/>
             I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year.: ${data.confirmation} <br/>
+            Files:<br/>
             ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
             ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
             ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a>` : ``}

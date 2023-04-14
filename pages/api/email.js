@@ -33,8 +33,8 @@ export default async (req, res) => {
 
     // contact@performanceartaward.ch
     // let toEmail = 'contact@performanceartaward.ch'
-    // let toEmail = 'info@evaknuesel.ch'
-    let toEmail = 'samabassett@gmail.com'
+    let toEmail = 'info@evaknuesel.ch'
+    // let toEmail = 'samabassett@gmail.com'
 
     // let fromEmail = 'swisspaa@gmail.com'
     let fromEmail = 'contact@performanceartaward.ch'
@@ -83,22 +83,22 @@ export default async (req, res) => {
           },
         ],
         cc: [
-          // {
-          //   email: 'swisspaa@gmail.com',
-          //   name: 'Swiss Performance Art Award'
-          // },
+          {
+            email: 'swisspaa@gmail.com',
+            name: 'Swiss Performance Art Award'
+          },
           // {
           //   email: 'knuesel@fotomuseum.ch',
           //   name: 'Eva' 
           // },
-          // {
-          //   email: 'samabassett@gmail.com',
-          //   name: 'Sam'
-          // },   
           {
-            email: 'sam@acceptandproceed.com',
+            email: 'samabassett@gmail.com',
             name: 'Sam'
-          },        
+          },   
+          // {
+          //   email: 'sam@acceptandproceed.com',
+          //   name: 'Sam'
+          // },        
         ],
       }
     ],
