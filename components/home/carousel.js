@@ -46,13 +46,13 @@ const Slide = styled.div`
     padding: 20px;
 
     * {
-        font-size: 10vw !important;
+        font-size: 5vw !important;
         line-height: 1;
     }
 
     @media(min-width: 1800px) {
         * {
-            font-size: 198px !important;
+            font-size: 84px !important;
         } 
     }
 `;
