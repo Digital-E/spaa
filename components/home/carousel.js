@@ -83,7 +83,7 @@ export default ({ data }) => {
 
                 setGallerySize: false,
             
-                autoPlay: 4000,
+                autoPlay: 7000,
                 // advances to the next cell
                 // if true, default is 3 seconds
                 // or set time between advances in milliseconds

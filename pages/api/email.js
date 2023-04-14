@@ -91,10 +91,10 @@ export default async (req, res) => {
           //   email: 'knuesel@fotomuseum.ch',
           //   name: 'Eva' 
           // },
-          {
-            email: 'samabassett@gmail.com',
-            name: 'Sam'
-          },   
+          // {
+          //   email: 'samabassett@gmail.com',
+          //   name: 'Sam'
+          // },   
           // {
           //   email: 'sam@acceptandproceed.com',
           //   name: 'Sam'
