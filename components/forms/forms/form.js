@@ -174,6 +174,7 @@ function Component({ data, hasSubmitted }) {
             cloudName: 'dngtyfmte', 
             uploadPreset: 'ml_default',
             sources: ['local'],
+            clientAllowedFormats: ['pdf'],
             maxFiles: 1,
             maxFileSize: 8000000,
         }, (error, result) => { 
@@ -205,9 +206,11 @@ function Component({ data, hasSubmitted }) {
             cloudName: 'dngtyfmte', 
             uploadPreset: 'ml_default',
             sources: ['local'],
+            clientAllowedFormats: ['pdf'],
             maxFiles: 1,
             maxFileSize: 8000000
         }, (error, result) => { 
+            // info: "shown" | "hidden" | "minimized" | "expanded"  
             if(!error && result && result.event === "queues-start") {
                 setIsUploadingTwo(true)
               }
@@ -234,6 +237,7 @@ function Component({ data, hasSubmitted }) {
             cloudName: 'dngtyfmte', 
             uploadPreset: 'ml_default',
             sources: ['local'],
+            clientAllowedFormats: ['pdf'],
             maxFiles: 1,
             maxFileSize: 8000000
         }, (error, result) => { 
