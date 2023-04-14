@@ -284,7 +284,7 @@ function Component({ data, hasSubmitted }) {
             The authorship of this performance lies with: ${data.authorship} <br/>
             Other participants (names, roles): ${data.otherParticipants} <br/>
             Websites / Videolinks: ${data.websitesAndLinks} <br/>
-            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year.: ${data.confirmation} <br/>
+            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year.: ${data.confirmation} <br/><br/>
             Files:<br/>
             ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
             ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
