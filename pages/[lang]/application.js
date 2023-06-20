@@ -24,10 +24,12 @@ const Container = styled.div`
 
 const Title = styled.div`
     position: fixed;
+    width: 100%;
     top: 150px;
     left: 50%;
     transform: translate(-50%, 0);
     text-align: center;
+    padding: 0 20px;
 
     span {
         font-size: 10vw;

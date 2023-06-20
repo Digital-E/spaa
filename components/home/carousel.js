@@ -46,7 +46,7 @@ const Slide = styled.div`
     padding: 20px;
 
     * {
-        font-size: 5vw !important;
+        font-size: 10vw !important;
         line-height: 1;
     }
 
@@ -83,7 +83,8 @@ export default ({ data }) => {
 
                 setGallerySize: false,
             
-                autoPlay: 7000,
+                // autoPlay: 7000,
+                autoPlay: 4000,
                 // advances to the next cell
                 // if true, default is 3 seconds
                 // or set time between advances in milliseconds
