@@ -77,12 +77,12 @@ export default ({ data }) => {
     return (
         <Container>
             <Mobile>
-                <video muted playsInline autoPlay loop className='hide-mobile-video' onLoadedData={() => hasLoaded('mobile')}>
+                <video muted playsInline autoPlay loop preload="auto" className='hide-mobile-video' onLoadedData={() => hasLoaded('mobile')}>
                     <source src='/videos/mobile.mp4' type='video/mp4' />
                 </video>
             </Mobile>
             <Desktop>
-                <video muted playsInline autoPlay loop className='hide-desktop-video' onLoadedData={() => hasLoaded('desktop')}>
+                <video muted playsInline autoPlay loop preload="auto" className='hide-desktop-video' onLoadedData={() => hasLoaded('desktop')}>
                     <source src='/videos/desktop.mp4' type='video/mp4' />
                 </video>
             </Desktop>
