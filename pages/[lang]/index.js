@@ -13,6 +13,7 @@ import Overlay from "../../components/home/background-dots"
 import Carousel from "../../components/home/carousel"
 import DrawingTool from "../../components/home/drawing-tool"
 import Information from "../../components/home/information"
+import VideoBackground from "../../components/home/video-background"
 
 
 
@@ -47,9 +48,10 @@ export default function Index({ data = {}, preview }) {
           content={data?.homeData?.content}
           />
         </Head>
-        <Overlay />
-        <Carousel data={data?.homeData} />
-        <DrawingTool preview={preview} />
+        <VideoBackground />
+        {/* <Overlay /> */}
+        {/* <Carousel data={data?.homeData} /> */}
+        {/* <DrawingTool preview={preview} /> */}
         {/* <Information /> */}
       </Layout>
     </>
