@@ -178,11 +178,11 @@ a:hover, button:hover {
       background: white;
   }
 
-    @media(min-width: 990px) {
+    /* @media(min-width: 990px) {
         .body-lock header {
             background: transparent;
         } 
-    }
+    } */
 
 /* -------------------------------------------------------------------------- */
 /*                                    Fonts                                   */

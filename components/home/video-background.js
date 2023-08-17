@@ -21,6 +21,7 @@ const Container = styled.div`
 const Mobile = styled.div`
     height: 100%;
     width: 100%;
+    margin-top: 50px;
 
     video {
         height: 100%;
@@ -39,7 +40,7 @@ const Mobile = styled.div`
 
 const Desktop = styled.div`
     height: 100%;
-    width: 100%;
+    width: 100vw;
 
     video {
         height: 100%;
@@ -78,7 +79,7 @@ export default ({ data }) => {
         <Container>
             <Mobile>
                 <video muted playsInline autoPlay loop preload="auto" className='hide-mobile-video' onLoadedData={() => hasLoaded('mobile')}>
-                    <source src='/videos/mobile.mp4' type='video/mp4' />
+                    <source src='/videos/mobile2.mp4' type='video/mp4' />
                 </video>
             </Mobile>
             <Desktop>
