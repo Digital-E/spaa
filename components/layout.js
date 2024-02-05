@@ -5,11 +5,11 @@ import Meta from '../components/meta'
 import { useRouterScroll } from '@moxy/next-router-scroll';
 
 export default function Layout({ preview, children }) {
-  const { updateScroll } = useRouterScroll();
+  // const { updateScroll } = useRouterScroll();
 
-  useEffect(() => {
-      updateScroll();
-  }, []);
+  // useEffect(() => {
+  //     updateScroll();
+  // }, []);
 
   return (
     <>

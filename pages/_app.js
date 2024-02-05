@@ -38,9 +38,9 @@ function MyApp({ Component, pageProps, router }) {
         >
         <Body content={pageProps.data?.menuData.cookietext} />
       </CookieConsent> */}
-      <RouterScrollProvider>     
+      {/* <RouterScrollProvider>      */}
         <Component {...pageProps} />
-      </RouterScrollProvider> 
+      {/* </RouterScrollProvider>  */}
       <Footer data={pageProps.data?.footerData}/>
     </>
   )
