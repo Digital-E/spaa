@@ -258,6 +258,10 @@ const FileName = styled.div`
   }
 `
 
+const ConditionalField = styled.div`
+  margin-left: 50px;
+`
+
 
 let initButton = false;
 
@@ -316,24 +320,51 @@ const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-const MyRadio = ({ label, list, ...props }) => {
+const MyRadio = ({ label, list, popUpLabel, hasPopUp, numberOfPerformersIsRequired, hasTouchedCheckbox, ...props }) => {
   const [field, meta] = useField({ ...props, type: "radio" });
 
+  useEffect(() => {
+    if(!hasPopUp) return
+    if(meta.value === list[1]) {
+      numberOfPerformersIsRequired(true)
+    } else {
+      numberOfPerformersIsRequired(false)
+    }
+
+    if(meta.value !== "") {
+      hasTouchedCheckbox(true)
+    }
+  })
   
   return (
     <>
       <Radio className={meta.touched && meta.error ? "error" : ""}>
         <label className="small-text" htmlFor={props.id || props.name}>{label}</label>
-        <fieldset>
-          {
-            list.map((item) => 
-              <div>
-                <input  {...field} {...props} value={item} className={meta.value === item ? "is-selected radio" : "radio"} />
-                <label className="small-text" htmlFor={item}>{item}</label>
-              </div>              
-              )
-          }
-        </fieldset>
+        <div>
+          <fieldset>
+            {
+              list.map((item, index) => 
+                <div>
+                  <div>
+                    <input  {...field} {...props} value={item} className={meta.value === item ? "is-selected radio" : "radio"} />
+                    <label className="small-text" htmlFor={item}>{item}</label>
+                  </div>
+                </div>              
+                )
+            }
+          </fieldset>
+          <ConditionalField>
+            {
+              (meta.value === list[1] && hasPopUp) &&
+              <MyTextInput
+                label={`${popUpLabel}`}
+                name="numberOfPerformers"
+                type="text"
+                placeholder={''}
+              />
+            } 
+          </ConditionalField>
+        </div>
       </Radio>
       {/* {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>

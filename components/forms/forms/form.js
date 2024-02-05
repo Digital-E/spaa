@@ -10,6 +10,7 @@ import { sanityClient } from '../../../lib/sanity.server'
 import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, MyUpload, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
 
 import UploadButtons from './upload-buttons'
+import { values } from 'lodash';
 
 const Loading = styled.img`
     width: 20px;
@@ -67,6 +68,12 @@ const FileName = styled.div`
     margin: 0;
   }
 `
+
+const ShowIfSelectShowing = styled.div`
+  margin-left: 50px;
+`
+
+
 
 function MyUploadCloudinary({ label, ...props }) {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -154,25 +161,83 @@ function Component({ data, hasSubmitted }) {
     let widgetOne = useRef();
     let widgetTwo = useRef();
     let widgetThree = useRef();
+    let widgetFour = useRef();
 
     let [isSubmitting, setIsSubmitting] = useState(false)
+
+    let [numberOfPerformersIsRequired, setNumberOfPerformersIsRequired] = useState(false)
+    let [hasTouchedCheckbox, setHasTouchedCheckbox] = useState(false)
 
     let [isUploadingOne, setIsUploadingOne] = useState(false)
     let [isUploadingTwo, setIsUploadingTwo] = useState(false)
     let [isUploadingThree, setIsUploadingThree] = useState(false)
+    let [isUploadingFour, setIsUploadingFour] = useState(false)
 
     let [attachmentOne, setAttachmentOne] = useState(null)
     let [attachmentTwo, setAttachmentTwo] = useState(null)
     let [attachmentThree, setAttachmentThree] = useState(null)
+    let [attachmentFour, setAttachmentFour] = useState(null)
 
     const SUPPORTED_FORMATS = ['application/pdf'];
     const FILE_SIZE = 8 * 1024 * 1024;
+
+    const numberOfPerformersIsRequiredFunc = (val) => {
+      if(val === true) {
+        setNumberOfPerformersIsRequired(true)
+      } else {
+        setNumberOfPerformersIsRequired(false)
+      }
+    }
+
+    const hasTouchedCheckboxFunc = (val) => {
+      if(val === true) {
+        setHasTouchedCheckbox(true)
+      } else {
+        setHasTouchedCheckbox(false)
+      }
+    }
+
+    function ShowingFields({fields, ...props}) {
+      const [field, meta, helpers] = useField(props);
+    
+      return (
+        <>
+        <MyRadio
+        label={`${fields[15]?.label}*:`}
+        name="showing"
+        type="radio"
+        list={[fields[16]?.label, fields[17]?.label]}
+        popUpLabel={`${fields[18]?.label}*:`}
+        popUpName="numberOfPerformers"
+        hasPopUp={true}
+        numberOfPerformersIsRequired={(val) => numberOfPerformersIsRequiredFunc(val)}
+        hasTouchedCheckbox={(val) => hasTouchedCheckboxFunc(val)}
+        />
+        {
+          hasTouchedCheckbox &&
+          <ShowIfSelectShowing>
+          <MyTextInput
+            label={`${fields[19]?.label}*:`}
+            name="durationOfPerformance"
+            type="text"
+            placeholder={''}
+          />  
+          <MyCheckbox
+            name="longtermPerformance"
+          >
+          {`${fields[20]?.label}:`}
+          </MyCheckbox>  
+        </ShowIfSelectShowing>   
+        }
+        </>
+      )
+    }
 
     useEffect(() => {
 
         widgetOne.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'ml_default',
+            uploadPreset: 'x4umhwwq',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -204,11 +269,11 @@ function Component({ data, hasSubmitted }) {
 
         widgetTwo.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'ml_default',
+            uploadPreset: 'x4umhwwq',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
-            maxFileSize: 8000000
+            maxFileSize: 8000000,
         }, (error, result) => { 
             // info: "shown" | "hidden" | "minimized" | "expanded"  
             if(!error && result && result.event === "queues-start") {
@@ -235,11 +300,11 @@ function Component({ data, hasSubmitted }) {
 
         widgetThree.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'ml_default',
+            uploadPreset: 'x4umhwwq',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
-            maxFileSize: 8000000
+            maxFileSize: 8000000,
         }, (error, result) => { 
             if(!error && result && result.event === "queues-start") {
                 setIsUploadingThree(true)
@@ -262,6 +327,36 @@ function Component({ data, hasSubmitted }) {
               }
             }
         )
+
+        widgetFour.current = cloudinary.createUploadWidget({
+            cloudName: 'dngtyfmte', 
+            uploadPreset: 'x4umhwwq',
+            sources: ['local'],
+            clientAllowedFormats: ['pdf'],
+            maxFiles: 1,
+            maxFileSize: 8000000,
+        }, (error, result) => { 
+            if(!error && result && result.event === "queues-start") {
+                setIsUploadingFour(true)
+              }
+
+              if (!error && result && result.event === "success") { 
+                setIsUploadingFour(false)
+
+                setAttachmentFour({
+                    filename: result.info.original_filename,
+                    url: result.info.secure_url
+                })
+
+                // console.log('Done! Here is the image info: ', result.info);
+                // console.log(result.info.original_filename, result.info.secure_url); 
+              }
+
+              if(!error && result.event === "abort") {
+                setIsUploadingFour(false)
+              }
+            }
+        )        
         
     }, [])
 
@@ -272,6 +367,7 @@ function Component({ data, hasSubmitted }) {
         <p>
             Name: ${data.name} <br/>
             First name: ${data.firstName} <br/>
+            Pronouns: ${data.pronouns} <br/>
             Date of birth: ${data.dob} <br/>
             Nationality: ${data.nationality} <br/>
             Resident of Switzerland since: ${data.residentOfSwitzerlandSince} <br/>
@@ -279,16 +375,20 @@ function Component({ data, hasSubmitted }) {
             Postal code / Town: ${data.postalCodeTown} <br/>
             Phone number: ${data.phoneNumber} <br/>
             Email: ${data.email} <br/>
-            Bank account (IBAN number): ${data.bankAccount} <br/>
             I will be showing a: ${data.showing} <br/>
+            Number of Performers: ${data.numberOfPerformers} <br/>
+            Duration of the Performance: ${data.durationOfPerformance} <br/>
+            Long-term performance: ${data.longtermPerformance} <br/>
             The authorship of this performance lies with: ${data.authorship} <br/>
             Other participants (names, roles): ${data.otherParticipants} <br/>
             Websites / Videolinks: ${data.websitesAndLinks} <br/>
-            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year.: ${data.confirmation} <br/><br/>
+            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year: ${data.confirmation} <br/>
+            I confirm that I have been living and officially registered in Switzerland since at least 1 January 2023: ${data.confirmationTwo} <br/><br/>
             Files:<br/>
             ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
             ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
             ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a>` : ``}
+            ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
         </p>
         `
 
@@ -340,6 +440,7 @@ function Component({ data, hasSubmitted }) {
             initialValues={{
             name: "",
             firstName: "",
+            pronouns: "",
             dob: "",
             nationality: "",
             residentOfSwitzerlandSince: "",
@@ -347,22 +448,29 @@ function Component({ data, hasSubmitted }) {
             postalCodeTown: "",
             phoneNumber: "",
             email: "",
-            bankAccount: "",
+            correspondanceLanguage: "",
             showing: "",
+            numberOfPerformers: "",
+            durationOfPerformance: "",
+            longtermPerformance: false,
             authorship: "",
             otherParticipants: "",
             websitesAndLinks: "",
             confirmation: false,
+            confirmationTwo: false,
             uploadOne: "",
             uploadTwo: "",
             uploadThree: "",
+            uploadFour: "",
             // checkboxOne: true,
             // checkboxTwo: false
             }}
             validationSchema={Yup.object({
             name: Yup.string()
             .required("Required"),
-            firstName:  Yup.string()
+            firstName: Yup.string()
+            .required("Required"),
+            pronouns:  Yup.string()
             .required("Required"),
             dob:  Yup.string()
             .required("Required"),
@@ -379,11 +487,15 @@ function Component({ data, hasSubmitted }) {
             email: Yup.string()
             .required("Required")
             .email("Invalid"),
-            bankAccount: Yup.string()
+            correspondanceLanguage: Yup.string()
             .required("Required"),
             showing: Yup.string()
             .required("Required"),
-            // .oneOf([fields[11].label , fields[12].label]),
+            numberOfPerformers: numberOfPerformersIsRequired ? Yup.string()
+            .required("Required") : Yup.string(),
+            durationOfPerformance: Yup.string()
+            .required("Required"),
+            longtermPerformance: Yup.boolean(),
             authorship: Yup.string(),
             // .required("Required"),
             otherParticipants: Yup.string(),
@@ -393,10 +505,14 @@ function Component({ data, hasSubmitted }) {
             confirmation: Yup.boolean()
             .required("Required")
             .oneOf([true], "Must fill in."),
+            confirmationTwo: Yup.boolean()
+            .required("Required")
+            .oneOf([true], "Must fill in."),
             uploadOne: Yup.mixed(),
             uploadTwo: Yup.mixed(),
             // .required("Required"),
-            uploadThree: Yup.mixed()
+            uploadThree: Yup.mixed(),
+            uploadFour: Yup.mixed()
             })}
             onSubmit={async (values, { setSubmitting }) => {
             // console.log(values)
@@ -420,75 +536,76 @@ function Component({ data, hasSubmitted }) {
                 name="firstName"
                 type="text"
                 placeholder={''}
-                />                                    
+                />   
                 <MyTextInput
                 label={`${fields[2]?.label}*:`}
+                name="pronouns"
+                type="text"
+                placeholder={''}
+                />                                                   
+                <MyTextInput
+                label={`${fields[3]?.label}*:`}
                 name="dob"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[3]?.label}*:`}
+                label={`${fields[4]?.label}*:`}
                 name="nationality"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[4]?.label}*:`}
+                label={`${fields[5]?.label}*:`}
                 name="residentOfSwitzerlandSince"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[5]?.label}*:`}
+                label={`${fields[6]?.label}*:`}
                 name="streetNumber"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[6]?.label}*:`}
+                label={`${fields[7]?.label}*:`}
                 name="postalCodeTown"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[7]?.label}*:`}
+                label={`${fields[8]?.label}*:`}
                 name="phoneNumber"
                 type="text"
                 placeholder={''}
                 /> 
                 <MyTextInput
-                label={`${fields[8]?.label}*:`}
+                label={`${fields[9]?.label}*:`}
                 name="email"
                 type="email"
                 placeholder={''}
                 />
-                <MyTextInput
-                label={`${fields[9]?.label}*:`}
-                name="bankAccount"
-                type="text"
-                placeholder={''}
-                /> 
                 <MyRadio
                 label={`${fields[10]?.label}*:`}
-                name="showing"
+                name="correspondanceLanguage"
                 type="radio"
-                list={[fields[11]?.label, fields[12]?.label]}
-                />
+                list={[fields[11]?.label, fields[12]?.label, fields[13]?.label, fields[14]?.label]}
+                />  
+                <ShowingFields name="showing" fields={fields}/>               
                 <MyTextInput
-                label={`${fields[13]?.label}:`}
+                label={`${fields[21]?.label}:`}
                 name="authorship"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[14]?.label}:`}
+                label={`${fields[22]?.label}:`}
                 name="otherParticipants"
                 type="text"
                 placeholder={''}
                 />
                 <MyTextInput
-                label={`${fields[15]?.label}:`}
+                label={`${fields[23]?.label}:`}
                 name="websitesAndLinks"
                 type="text"
                 placeholder={''}
@@ -502,8 +619,13 @@ function Component({ data, hasSubmitted }) {
                 <MyCheckbox
                 name="confirmation"
                 >
-                {`${fields[16]?.label}*:`}
-                </MyCheckbox>                 
+                {`${fields[24]?.label}*:`}
+                </MyCheckbox>   
+                <MyCheckbox
+                name="confirmationTwo"
+                >
+                {`${fields[25]?.label}*:`}
+                </MyCheckbox>               
                 <Title>{data.subtitleTwo}</Title>
                 {/* <MyTextInput
                 label={`${fields[18]?.label}:`}
@@ -528,9 +650,11 @@ function Component({ data, hasSubmitted }) {
                     attachmentOne={attachmentOne}
                     attachmentTwo={attachmentTwo}
                     attachmentThree={attachmentThree}
+                    attachmentFour={attachmentFour}
                     widgetOneOpen={() => widgetOne.current.open()}
                     widgetTwoOpen={() => widgetTwo.current.open()}
                     widgetThreeOpen={() => widgetThree.current.open()}
+                    widgetFourOpen={() => widgetFour.current.open()}
                 />
                 {/* <div onClick={() => widgetOne.current.open()}>
                     <MyUploadCloudinary 
@@ -601,6 +725,7 @@ function Component({ data, hasSubmitted }) {
                 isUploadingOne={isUploadingOne}
                 isUploadingTwo={isUploadingTwo}
                 isUploadingThree={isUploadingThree}
+                isUploadingFour={isUploadingFour}
                 >{data.submitButton}<Circle id="circle" /></Submit>
                 :
                 <Loading src="/images/loading.gif" />

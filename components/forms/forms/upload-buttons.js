@@ -90,7 +90,7 @@ function MyUploadCloudinary({ label, ...props }) {
 
 
 
-function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, widgetOneOpen, widgetTwoOpen, widgetThreeOpen }) {
+function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, attachmentFour, widgetOneOpen, widgetTwoOpen, widgetThreeOpen, widgetFourOpen }) {
 
 
 
@@ -98,7 +98,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, widg
         <Container>
                 <div onClick={() => widgetOneOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[18]?.label}
+                        label={fields[26]?.label}
                         type="text"
                         name="uploadOne"
                         attachment={attachmentOne}
@@ -106,7 +106,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, widg
                 </div>
                 <div onClick={() => widgetTwoOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[19]?.label}
+                        label={fields[27]?.label}
                         type="text"
                         name="uploadTwo"
                         attachment={attachmentTwo}
@@ -114,12 +114,20 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, widg
                 </div>
                 <div onClick={() => widgetThreeOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[20]?.label}
+                        label={fields[28]?.label}
                         type="text"
                         name="uploadThree"
                         attachment={attachmentThree}
                     />   
-                </div>                             
+                </div>
+                <div onClick={() => widgetFourOpen()}>
+                    <MyUploadCloudinary 
+                        label={fields[29]?.label}
+                        type="text"
+                        name="uploadThree"
+                        attachment={attachmentFour}
+                    />   
+                </div>                                               
         </Container>
     )
 }
