@@ -19,6 +19,13 @@ const Container = styled.div`
     @media(max-width: 989px) {
       width: 100%;
       padding: 20px;
+
+      > div:nth-child(3) > form:nth-child(1) > div:nth-child(11),
+      > div:nth-child(3) > form:nth-child(1) > div:nth-child(12)
+       {
+        display: flex;
+        flex-direction: column;
+      }
     }
 `
 
@@ -56,7 +63,7 @@ const Download = styled.div`
 
 
 
-const Component = ({ data }) => {
+const Component = ({ data, forceActivate }) => {
 
   let [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -89,7 +96,7 @@ const Component = ({ data }) => {
   }  
 
   return (
-      data?.applicationOpen ?
+      data?.applicationOpen || forceActivate ?
       <Container>
         {
           !hasSubmitted ?

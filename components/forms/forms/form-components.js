@@ -188,6 +188,18 @@ const Radio = styled.div`
     fieldset input.is-selected {
       background: gray;
     }
+
+    @media(max-width: 989px) {
+      margin: 10px 0;
+
+      fieldset {
+        margin: 10px 0;
+      }
+
+      fieldset input {
+        margin-left: 0;
+      }
+    }
 `
 
 const UploadWrapper = styled.div`
