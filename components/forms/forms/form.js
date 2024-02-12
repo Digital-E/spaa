@@ -235,6 +235,8 @@ function Component({ data, hasSubmitted }) {
 
     useEffect(() => {
 
+      // sendMail()
+
         widgetOne.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
             uploadPreset: 'x4umhwwq',
@@ -408,6 +410,8 @@ function Component({ data, hasSubmitted }) {
         </p>
         `
 
+        // let html = '<p></p>'
+
         let dataObj = {
         email: data.email,
         subject: `New Submission: ${data.firstName} ${data.name} - ${data.email}`,
@@ -421,6 +425,19 @@ function Component({ data, hasSubmitted }) {
         // attachmentBlobThree: attachmentBlobThree
         }
 
+        // let dataObj = {
+        //   email: 'samabassett@gmail.com',
+        //   subject: `New Submission:`,
+        //   html: html,
+        //   name: `sam`,
+        //   // attachmentNameOne: attachmentNameOne ? attachmentNameOne.name : null,
+        //   // attachmentBlobOne: attachmentBlobOne,
+        //   // attachmentNameTwo: attachmentNameTwo ? attachmentNameTwo.name : null,
+        //   // attachmentBlobTwo: attachmentBlobTwo,
+        //   // attachmentNameThree: attachmentNameThree ? attachmentNameThree.name : null,
+        //   // attachmentBlobThree: attachmentBlobThree
+        //   }
+
         try {
         let res = await fetch("/api/email", {
             "method": "POST",
@@ -430,7 +447,7 @@ function Component({ data, hasSubmitted }) {
     
 
 
-        console.log(res)
+        // console.log(res)
 
         if(res.status !== 200) return console.log('error')
 
@@ -449,6 +466,7 @@ function Component({ data, hasSubmitted }) {
     let fields = data.fields;
 
     if(fields === null) return null;
+
 
     return (
         <Container>

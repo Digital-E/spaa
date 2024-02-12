@@ -109,12 +109,14 @@ export default async (req, res) => {
     // attachments: attachments   
   }; 
 
+  // console.log(html, subject)
+
   try {
     let response = await sgMail.send(msg);
-    // console.log(response)
+    // console.log("success", response)
     res.json({ message: `Email has been sent` })
   } catch (error) {
-    // console.log(error)
+    // console.log("error", error)
     res.status(500).json({ error: 'Error sending email' })
   }
 }
