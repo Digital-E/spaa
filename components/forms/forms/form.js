@@ -470,8 +470,7 @@ function Component({ data, hasSubmitted }) {
             .required("Required"),
             firstName: Yup.string()
             .required("Required"),
-            pronouns:  Yup.string()
-            .required("Required"),
+            pronouns:  Yup.string(),
             dob:  Yup.string()
             .required("Required"),
             nationality: Yup.string()
@@ -538,7 +537,7 @@ function Component({ data, hasSubmitted }) {
                 placeholder={''}
                 />   
                 <MyTextInput
-                label={`${fields[2]?.label}*:`}
+                label={`${fields[2]?.label}:`}
                 name="pronouns"
                 type="text"
                 placeholder={''}
