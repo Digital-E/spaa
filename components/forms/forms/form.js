@@ -10,7 +10,7 @@ import { sanityClient } from '../../../lib/sanity.server'
 import {Container, Input, TextArea, ButtonWrapper, MyTextInput, MyTextArea, MyCheckbox, MyRadio, MyUpload, Submit, Circle, StyledSelect, StyledErrorMessage, StyledLabel, MySelect, Title} from './form-components'
 
 import UploadButtons from './upload-buttons'
-import { values } from 'lodash';
+
 
 const Loading = styled.img`
     width: 20px;
@@ -264,6 +264,10 @@ function Component({ data, hasSubmitted }) {
               if(!error && result.event === "abort") {
                 setIsUploadingOne(false)
               }
+
+              if(result.failed) {
+                setIsUploadingOne(false)
+              }
             }
         )
 
@@ -293,6 +297,10 @@ function Component({ data, hasSubmitted }) {
               }
 
               if(!error && result.event === "abort") {
+                setIsUploadingTwo(false)
+              }
+
+              if(result.failed) {
                 setIsUploadingTwo(false)
               }
             }
@@ -325,6 +333,10 @@ function Component({ data, hasSubmitted }) {
               if(!error && result.event === "abort") {
                 setIsUploadingThree(false)
               }
+
+              if(result.failed) {
+                setIsUploadingThree(false)
+              }
             }
         )
 
@@ -353,6 +365,10 @@ function Component({ data, hasSubmitted }) {
               }
 
               if(!error && result.event === "abort") {
+                setIsUploadingFour(false)
+              }
+
+              if(result.failed) {
                 setIsUploadingFour(false)
               }
             }
