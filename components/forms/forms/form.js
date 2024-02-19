@@ -405,7 +405,7 @@ function Component({ data, hasSubmitted }) {
             Files:<br/>
             ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
             ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
-            ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a>` : ``}
+            ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a><br/>` : ``}
             ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
         </p>
         `
