@@ -33,7 +33,31 @@ const Mobile = styled.div`
         opacity: 0;
     }
 
-    @media(min-width: 990px) {
+    @media(min-width: 768px) {
+        display: none;
+    }
+`
+
+const Tablet = styled.div`
+    height: 100%;
+    width: 100%;
+    margin-top: 50px;
+
+    video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .hide-desktop-video {
+        opacity: 0;
+    }
+
+    @media(max-width: 767px) {
+        display: none;
+    }  
+    
+    @media(min-width: 989px) {
         display: none;
     }
 `
@@ -70,6 +94,10 @@ export default ({ data }) => {
             document.querySelector('.hide-mobile-video').classList.remove('hide-mobile-video')
         }
 
+        if(platform === 'tablet') {
+            document.querySelector('.hide-tablet-video').classList.remove('hide-tablet-video')
+        }
+
         if(platform === 'desktop') {
             document.querySelector('.hide-desktop-video').classList.remove('hide-desktop-video')
         }
@@ -79,12 +107,17 @@ export default ({ data }) => {
         <Container>
             <Mobile>
                 <video muted playsInline autoPlay loop preload="auto" className='hide-mobile-video' onLoadedData={() => hasLoaded('mobile')}>
-                    <source src='/videos/mobile2.mp4' type='video/mp4' />
+                    <source src='/videos/SPAA_2024_portrait.mp4' type='video/mp4' />
                 </video>
             </Mobile>
+            <Tablet>
+            <video muted playsInline autoPlay loop preload="auto" className='hide-tablet-video' onLoadedData={() => hasLoaded('tablet')}>
+                <source src='/videos/SPAA_2024_square.mp4' type='video/mp4' />
+            </video>                
+            </Tablet>
             <Desktop>
                 <video muted playsInline autoPlay loop preload="auto" className='hide-desktop-video' onLoadedData={() => hasLoaded('desktop')}>
-                    <source src='/videos/desktop.mp4' type='video/mp4' />
+                    <source src='/videos/SPAA_2024_paysage.mp4' type='video/mp4' />
                 </video>
             </Desktop>
         </Container>

@@ -48,10 +48,10 @@ export default function Index({ data = {}, preview }) {
           content={data?.homeData?.content}
           />
         </Head>
-        {/* <VideoBackground /> */}
-        <Overlay />
-        <Carousel data={data?.homeData} />
-        <DrawingTool preview={preview} />
+        <VideoBackground />
+        {/* <Overlay /> */}
+        {/* <Carousel data={data?.homeData} />
+        <DrawingTool preview={preview} /> */}
         {/* <Information /> */}
       </Layout>
     </>
