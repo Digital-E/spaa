@@ -77,7 +77,7 @@ const Desktop = styled.div`
     }
 
     @media(max-width: 989px) {
-        display: none;
+        display: none
     }
 `
 
