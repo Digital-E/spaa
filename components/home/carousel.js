@@ -218,7 +218,7 @@ export default ({ data }) => {
     return (
         <Container>
             <Carousel ref={gallery}>
-                {data.slides.map((item, index) => {
+                {data?.slides?.map((item, index) => {
                 return (
                     <Slide key={index} className="carousel-slide">
                         {/* <div><p>{item.slideText}</p></div> */}
