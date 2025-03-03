@@ -239,7 +239,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetOne.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'x4umhwwq',
+            uploadPreset: 'lgrodwaf',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -275,7 +275,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetTwo.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'x4umhwwq',
+            uploadPreset: 'lgrodwaf',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -310,7 +310,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetThree.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'x4umhwwq',
+            uploadPreset: 'lgrodwaf',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -344,7 +344,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetFour.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'x4umhwwq',
+            uploadPreset: 'lgrodwaf',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
