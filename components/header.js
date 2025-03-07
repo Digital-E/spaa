@@ -165,7 +165,7 @@ export default function Header({ data }) {
           <Link href={`/${router.asPath.split("/")[1]}`}>
             Performancepreis Schweiz <br/>
             Prix Suisse de la Performance <br/>
-            Premio Svizzero del la Performance <br/>
+            Premio Svizzero della Performance <br/>
             Swiss Performance Art Award
           </Link>
       </div>
