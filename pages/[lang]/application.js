@@ -62,7 +62,9 @@ export default function About({ data = {}, preview }) {
         <Title open={data?.applicationData?.applicationOpen}><span>{data?.applicationData?.applicationOpen ? data?.applicationData?.title : data?.applicationData?.applicationClosedMessage}</span></Title>
         <Container>
           <BackgroundDots />
-          <Form data={data?.applicationData} />
+          <Form data={data?.applicationData} 
+          // forceActivate={true}
+          />
         </Container>
       </Layout>
     </>

@@ -1,31 +1,25 @@
-const { INFOMANIAK_API_KEY: secret } = process.env;
+const { MAILCHIMP_AUTH: secret } = process.env;
 
 
 export default async (req, res) => {
-
-  let domain = 57647
-
-  console.log(req)
+  let audienceId = "73997b8124";
 
   try {
     const response = await fetch(
-      `https://api.infomaniak.com/1/newsletters/${domain}/subscribers`,
+      `https://us16.api.mailchimp.com/3.0/lists/${audienceId}/members`,
       // `https://us13.api.mailchimp.com/3.0/lists/${listId}/segments/${segmentId}/members`,
       {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${secret}`, // REFER TO THE VARIABLE HERE
+          Authorization: `api_key ${secret}`, // REFER TO THE VARIABLE HERE
         },
         body: JSON.stringify({
-          // "merge_fields":{
-          //   FNAME: req.body.name
-          // },
-          // email_address: req.body.email,
-          // status: "subscribed",
-
-          "name": req.body.name,
-          "email": req.body.email
+          "merge_fields":{
+            FNAME: req.body.name
+          },
+          email_address: req.body.email,
+          status: "subscribed",
         }),
       }
     )

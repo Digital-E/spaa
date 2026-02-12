@@ -239,7 +239,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetOne.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'lgrodwaf',
+            uploadPreset: 'kybrsvsn',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -275,7 +275,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetTwo.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'lgrodwaf',
+            uploadPreset: 'kybrsvsn',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -310,7 +310,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetThree.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'lgrodwaf',
+            uploadPreset: 'kybrsvsn',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -344,7 +344,7 @@ function Component({ data, hasSubmitted }) {
 
         widgetFour.current = cloudinary.createUploadWidget({
             cloudName: 'dngtyfmte', 
-            uploadPreset: 'lgrodwaf',
+            uploadPreset: 'kybrsvsn',
             sources: ['local'],
             clientAllowedFormats: ['pdf'],
             maxFiles: 1,
@@ -381,42 +381,43 @@ function Component({ data, hasSubmitted }) {
 
     const sendMail = async (data) => {
 
-        let html = `
-        <p>
-            Name: ${data.name} <br/>
-            First name: ${data.firstName} <br/>
-            Pronouns: ${data.pronouns} <br/>
-            Date of birth: ${data.dob} <br/>
-            Nationality: ${data.nationality} <br/>
-            Resident of Switzerland since: ${data.residentOfSwitzerlandSince} <br/>
-            Street / Number: ${data.streetNumber} <br/>
-            Postal code / Town: ${data.postalCodeTown} <br/>
-            Phone number: ${data.phoneNumber} <br/>
-            Email: ${data.email} <br/>
-            I will be showing a: ${data.showing} <br/>
-            Number of Performers: ${data.numberOfPerformers} <br/>
-            Duration of the Performance: ${data.durationOfPerformance} <br/>
-            Long-term performance: ${data.longtermPerformance} <br/>
-            The authorship of this performance lies with: ${data.authorship} <br/>
-            Other participants (names, roles): ${data.otherParticipants} <br/>
-            Websites / Videolinks: ${data.websitesAndLinks} <br/>
-            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year: ${data.confirmation} <br/>
-            I confirm that I have been living and officially registered in Switzerland since at least 1 January 2023: ${data.confirmationTwo} <br/><br/>
-            Files:<br/>
-            ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
-            ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
-            ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a><br/>` : ``}
-            ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
-        </p>
-        `
+        // let html = `
+        // <p>
+        //     Name: ${data.name} <br/>
+        //     First name: ${data.firstName} <br/>
+        //     Pronouns: ${data.pronouns} <br/>
+        //     Date of birth: ${data.dob} <br/>
+        //     Nationality: ${data.nationality} <br/>
+        //     Resident of Switzerland since: ${data.residentOfSwitzerlandSince} <br/>
+        //     Street / Number: ${data.streetNumber} <br/>
+        //     Postal code / Town: ${data.postalCodeTown} <br/>
+        //     Phone number: ${data.phoneNumber} <br/>
+        //     Email: ${data.email} <br/>
+        //     I will be showing a: ${data.showing} <br/>
+        //     Number of Performers: ${data.numberOfPerformers} <br/>
+        //     Duration of the Performance: ${data.durationOfPerformance} <br/>
+        //     Long-term performance: ${data.longtermPerformance} <br/>
+        //     The authorship of this performance lies with: ${data.authorship} <br/>
+        //     Other participants (names, roles): ${data.otherParticipants} <br/>
+        //     Websites / Videolinks: ${data.websitesAndLinks} <br/>
+        //     Instagram handle: ${data.instagramHandle} <br/>
+        //     I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year: ${data.confirmation} <br/>
+        //     I confirm that I have been living and officially registered in Switzerland since at least 1 January 2023: ${data.confirmationTwo} <br/><br/>
+        //     Files:<br/>
+        //     ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
+        //     ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
+        //     ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a><br/>` : ``}
+        //     ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
+        // </p>
+        // `
 
-        // let html = '<p></p>'
+        let html = '<p></p>'
 
         let dataObj = {
-        email: data.email,
-        subject: `New Submission: ${data.firstName} ${data.name} - ${data.email}`,
+        email: data?.email,
+        subject: `New Submission: ${data?.firstName} ${data?.name} - ${data?.email}`,
         html: html,
-        name: `${data.firstName} ${data.name}`,
+        name: `${data?.firstName} ${data?.name}`,
         // attachmentNameOne: attachmentNameOne ? attachmentNameOne.name : null,
         // attachmentBlobOne: attachmentBlobOne,
         // attachmentNameTwo: attachmentNameTwo ? attachmentNameTwo.name : null,
@@ -490,6 +491,7 @@ function Component({ data, hasSubmitted }) {
             authorship: "",
             otherParticipants: "",
             websitesAndLinks: "",
+            instagramHandle: "",
             confirmation: false,
             confirmationTwo: false,
             uploadOne: "",
@@ -534,6 +536,7 @@ function Component({ data, hasSubmitted }) {
             otherParticipants: Yup.string(),
             // .required("Required"),
             websitesAndLinks: Yup.string(),
+            instagramHandle: Yup.string(),
             // .required("Required"),
             confirmation: Yup.boolean()
             .required("Required")
@@ -643,6 +646,12 @@ function Component({ data, hasSubmitted }) {
                 type="text"
                 placeholder={''}
                 />
+                <MyTextInput
+                label={`${fields[24]?.label}:`}
+                name="websitesAndLinks"
+                type="text"
+                placeholder={''}
+                />                
                 {/* <MyTextInput
                 label={`${fields[16]?.label}*:`}
                 name="confirmation"
@@ -652,12 +661,12 @@ function Component({ data, hasSubmitted }) {
                 <MyCheckbox
                 name="confirmation"
                 >
-                {`${fields[24]?.label}*:`}
+                {`${fields[25]?.label}*:`}
                 </MyCheckbox>   
                 <MyCheckbox
                 name="confirmationTwo"
                 >
-                {`${fields[25]?.label}*:`}
+                {`${fields[26]?.label}*:`}
                 </MyCheckbox>               
                 <Title>{data.subtitleTwo}</Title>
                 {/* <MyTextInput

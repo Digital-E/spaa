@@ -35,6 +35,7 @@ export default async (req, res) => {
     // let toEmail = 'contact@performanceartaward.ch'
     // let toEmail = 'info@evaknuesel.ch'
     // let toEmail = 'samabassett@gmail.com'
+    // let toEmail = 'hello@samuelbassett.xyz'
     let toEmail = 'b+spaa@sunarjo.com'
 
     // let fromEmail = 'swisspaa@gmail.com'
@@ -88,6 +89,10 @@ export default async (req, res) => {
             email: 'swisspaa@gmail.com',
             name: 'Swiss Performance Art Award'
           },
+          {
+            email: 'application@performanceartaward.ch',
+            name: 'Swiss Performance Art Award'
+          }
           // {
           //   email: 'knuesel@fotomuseum.ch',
           //   name: 'Eva' 

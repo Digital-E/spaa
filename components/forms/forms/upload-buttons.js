@@ -98,7 +98,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, atta
         <Container>
                 <div onClick={() => widgetOneOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[26]?.label}
+                        label={fields[27]?.label}
                         type="text"
                         name="uploadOne"
                         attachment={attachmentOne}
@@ -106,7 +106,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, atta
                 </div>
                 <div onClick={() => widgetTwoOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[27]?.label}
+                        label={fields[28]?.label}
                         type="text"
                         name="uploadTwo"
                         attachment={attachmentTwo}
@@ -114,7 +114,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, atta
                 </div>
                 <div onClick={() => widgetThreeOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[28]?.label}
+                        label={fields[29]?.label}
                         type="text"
                         name="uploadThree"
                         attachment={attachmentThree}
@@ -122,7 +122,7 @@ function Component({ fields, attachmentOne, attachmentTwo, attachmentThree, atta
                 </div>
                 <div onClick={() => widgetFourOpen()}>
                     <MyUploadCloudinary 
-                        label={fields[29]?.label}
+                        label={fields[30]?.label}
                         type="text"
                         name="uploadThree"
                         attachment={attachmentFour}
