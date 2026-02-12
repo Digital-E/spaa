@@ -381,37 +381,37 @@ function Component({ data, hasSubmitted }) {
 
     const sendMail = async (data) => {
 
-        // let html = `
-        // <p>
-        //     Name: ${data.name} <br/>
-        //     First name: ${data.firstName} <br/>
-        //     Pronouns: ${data.pronouns} <br/>
-        //     Date of birth: ${data.dob} <br/>
-        //     Nationality: ${data.nationality} <br/>
-        //     Resident of Switzerland since: ${data.residentOfSwitzerlandSince} <br/>
-        //     Street / Number: ${data.streetNumber} <br/>
-        //     Postal code / Town: ${data.postalCodeTown} <br/>
-        //     Phone number: ${data.phoneNumber} <br/>
-        //     Email: ${data.email} <br/>
-        //     I will be showing a: ${data.showing} <br/>
-        //     Number of Performers: ${data.numberOfPerformers} <br/>
-        //     Duration of the Performance: ${data.durationOfPerformance} <br/>
-        //     Long-term performance: ${data.longtermPerformance} <br/>
-        //     The authorship of this performance lies with: ${data.authorship} <br/>
-        //     Other participants (names, roles): ${data.otherParticipants} <br/>
-        //     Websites / Videolinks: ${data.websitesAndLinks} <br/>
-        //     Instagram handle: ${data.instagramHandle} <br/>
-        //     I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year: ${data.confirmation} <br/>
-        //     I confirm that I have been living and officially registered in Switzerland since at least 1 January 2023: ${data.confirmationTwo} <br/><br/>
-        //     Files:<br/>
-        //     ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
-        //     ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
-        //     ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a><br/>` : ``}
-        //     ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
-        // </p>
-        // `
+        let html = `
+        <p>
+            Name: ${data.name} <br/>
+            First name: ${data.firstName} <br/>
+            Pronouns: ${data.pronouns} <br/>
+            Date of birth: ${data.dob} <br/>
+            Nationality: ${data.nationality} <br/>
+            Resident of Switzerland since: ${data.residentOfSwitzerlandSince} <br/>
+            Street / Number: ${data.streetNumber} <br/>
+            Postal code / Town: ${data.postalCodeTown} <br/>
+            Phone number: ${data.phoneNumber} <br/>
+            Email: ${data.email} <br/>
+            I will be showing a: ${data.showing} <br/>
+            Number of Performers: ${data.numberOfPerformers} <br/>
+            Duration of the Performance: ${data.durationOfPerformance} <br/>
+            Long-term performance: ${data.longtermPerformance} <br/>
+            The authorship of this performance lies with: ${data.authorship} <br/>
+            Other participants (names, roles): ${data.otherParticipants} <br/>
+            Websites / Videolinks: ${data.websitesAndLinks} <br/>
+            Instagram handle: ${data.instagramHandle} <br/>
+            I confirm that I am not enrolled in a BA curriculum at an art school or art academy in the current year: ${data.confirmation} <br/>
+            I confirm that I have been living and officially registered in Switzerland since at least 1 January 2023: ${data.confirmationTwo} <br/><br/>
+            Files:<br/>
+            ${attachmentOne !== null ? `<a href="${attachmentOne?.url}">${attachmentOne?.filename}</a><br/>` : ``}
+            ${attachmentTwo !== null ? `<a href="${attachmentTwo?.url}">${attachmentTwo?.filename}</a><br/>` : ``}
+            ${attachmentThree !== null ? `<a href="${attachmentThree?.url}">${attachmentThree?.filename}</a><br/>` : ``}
+            ${attachmentFour !== null ? `<a href="${attachmentFour?.url}">${attachmentFour?.filename}</a>` : ``}
+        </p>
+        `
 
-        let html = '<p></p>'
+        // let html = '<p></p>'
 
         let dataObj = {
         email: data?.email,
