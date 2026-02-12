@@ -462,7 +462,67 @@ function Component({ data, hasSubmitted }) {
             console.log(error)
         }
 
-    }    
+    }   
+
+    const sendApplicantConfirmationEmail = async (data) => {
+
+        let html = `
+        <table width="600" cellpadding="40" cellspacing="0" border="0" align="center">
+          <tr>
+            <td>
+              <p>Dear Applicant</p>
+              <p>Thank you for your submission for this year's Swiss Performance Art Award, which we have received in full. We will be happy to inform you of the jury's decision at the end of May. </p>
+              <p>Best regards</p>
+
+              <hr>
+
+              <p>Liebe:r Kandidat:in</p>
+              <p>Herzlichen Dank für die Eingabe für den diesjährigen Performancepreis Schweiz, die vollständig bei uns eingegangen ist. Gerne informieren wir Ende Mai über den Juryentscheid.</p>
+              <p>Mit freundlichen Grüssen</p>
+
+              <hr>
+
+              <p>Chèr.e.s candidat.e.s</p>
+              <p>Nous vous remercions pour votre candidature au Prix suisse de la Performance de cette année, qui nous est parvenue dans son intégralité. Nous nous ferons un plaisir de vous informer de la décision du jury fin mai.</p>
+              <p>Avec nos meilleures salutations</p>
+
+              <hr>
+
+              <p><b>Benjamin Sunarjo</b> (he/him)<br>
+              Coordinator Swiss Performance Art Award</p>
+
+              <p><small>Save the date:<br>
+              <b>Swiss Performance Art Award 2026</b><br>
+              15 November 2026<br>
+              Kunstraum Baden</small></p>
+            </td>
+          </tr>
+        </table>
+        `
+
+        let dataObj = {
+        email: data?.email,
+        subject: `Application Confirmation: ${data?.firstName} ${data?.name} - ${data?.email}`,
+        html: html,
+        name: `${data?.firstName} ${data?.name}`,
+        }
+
+        try {
+        let res = await fetch("/api/applicant-confirmation-email", {
+            "method": "POST",
+            "headers": { "content-type": "application/json" },
+            "body": JSON.stringify(dataObj)
+        })
+    
+
+        if(res.status !== 200) return console.log('error')
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }       
 
     let fields = data.fields;
 
@@ -553,6 +613,7 @@ function Component({ data, hasSubmitted }) {
             onSubmit={async (values, { setSubmitting }) => {
             // console.log(values)
             sendMail(values)
+            sendApplicantConfirmationEmail(values)
             setIsSubmitting(true)
             // await new Promise(r => setTimeout(r, 500));
             // setSubmitting(false);
