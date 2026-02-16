@@ -5,7 +5,7 @@ export default async (req, res) => {
 
   let domain = 57647
 
-  console.log(req)
+  // console.log(req)
 
   try {
     const response = await fetch(
@@ -23,8 +23,9 @@ export default async (req, res) => {
           // },
           // email_address: req.body.email,
           // status: "subscribed",
-
-          "name": req.body.name,
+          fields: {
+            name: req.body.name,
+          },
           "email": req.body.email
         }),
       }

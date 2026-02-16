@@ -40,7 +40,7 @@ export default async (req, res) => {
     let toEmail = email
 
     // let fromEmail = 'swisspaa@gmail.com'
-    let fromEmail = 'application@performanceartaward.ch'
+    let fromEmail = 'contact@performanceartaward.ch'
 
 
   // let attachment = {

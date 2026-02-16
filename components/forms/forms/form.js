@@ -709,7 +709,7 @@ function Component({ data, hasSubmitted }) {
                 />
                 <MyTextInput
                 label={`${fields[24]?.label}:`}
-                name="websitesAndLinks"
+                name="instagramHandle"
                 type="text"
                 placeholder={''}
                 />                
